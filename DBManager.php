@@ -16,7 +16,6 @@ class DBManager{
         $this->password = $password;
         $this->dbname = $dbname;
 
-        $this->dbmanager = $this;
         try{
             $this->conn = new PDO(
                 'mysql:host=' . $this->host . ';dbname=' . $this->dbname,
@@ -52,7 +51,7 @@ class DBManager{
                     <h3 class="category-heading"><?=$results[$x]['category']?></h3>
                 <?php } ?>
                         
-                    
+                
                 <button class="addToOrderButton" onclick="alert('naurr');">
                     <div class="menuItem">
                         <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">

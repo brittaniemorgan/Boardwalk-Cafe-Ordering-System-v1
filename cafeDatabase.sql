@@ -18,15 +18,15 @@ CREATE TABLE `menuItems` (
 
 )ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `menuItems` VALUES (1, 'Chicken','Sandwiches', 'MED', '', 510, 0, "default-menu-image.jpg"),
-    (2, 'B.L.T','Sandwiches', 'MED', '', 510, 0, "default-menu-image.jpg"),
-    (3, 'Turkey Club','Sandwiches', 'MED', '', 570, 0, "default-menu-image.jpg"),
-    (4, 'Traditional Club','Sandwiches', 'MED', '', 570, 0, "default-menu-image.jpg"),
+INSERT INTO `menuItems` VALUES (1, 'Chicken','Sandwiches', 'MED', '', 510, 0, "chicken-sandwich.jpg"),
+    (2, 'B.L.T','Sandwiches', 'MED', '', 510, 0, "blt.jpg"),
+    (3, 'Turkey Club','Sandwiches', 'MED', '', 570, 0, "turkey-club.jpg"),
+    (4, 'Traditional Club','Sandwiches', 'MED', '', 570, 0, "traditional-club.jpg"),
 
-    (5, 'Traditional Club','Wraps', 'MED', '', 635, 0, "default-menu-image.jpg"),
-    (6, 'Turkey Club','Wraps', 'MED', '', 665, 0, "default-menu-image.jpg"),
-    (7, 'Chicken','Wraps', 'MED', '', 630, 0, "default-menu-image.jpg"),
-    (8, 'Ham and Cheese','Wraps', 'MED', '', 630, 0, "default-menu-image.jpg"),
+    (5, 'Traditional Club','Wraps', 'MED', '', 635, 0, "trad-club-wrap.jpg"),
+    (6, 'Turkey Club','Wraps', 'MED', '', 665, 0, "turkey-wrap.jpg"),
+    (7, 'Chicken','Wraps', 'MED', '', 630, 0, "chicken-wrap.jpeg"),
+    (8, 'Ham and Cheese','Wraps', 'MED', '', 630, 0, "ham-cheese-wrap.jpg"),
 
     (9, 'Fried Chicken','Jamaican', 'MED', 'LRG', 700, 850, "fried-chicken.jpg"),
     (10, 'Spicy Baked Chicken','Jamaican', 'MED', 'LRG', 700, 850, "spicy-baked-chicken.jpg"),
@@ -35,7 +35,14 @@ INSERT INTO `menuItems` VALUES (1, 'Chicken','Sandwiches', 'MED', '', 510, 0, "d
     
     (13, 'Rice and Peas','Jamaican Sides', 'MED', '', 0, 0, "rice-and-peas.jpg"),
     (14, 'Plain Rice','Jamaican Sides', 'MED', '', 0, 0, "white-rice.jpg"),
-    (15, 'Spicy Pasta','Jamaican Sides', 'MED', '', 0, 0, "spicy-pasta.jpg");
+    (15, 'Spicy Pasta','Jamaican Sides', 'MED', '', 0, 0, "spicy-pasta.jpg"),
+
+    (16, 'Latte','Beverages', 'MED', 'LRG', 300, 410, "latte.jpg"),
+    (17, 'Cappuchino','Beverages', 'MED', 'LRG', 300, 410, "cappuccino.jpg"),
+    (18, 'Mocha','Beverages', 'MED', 'LRG', 320, 435, "mocha.png"),
+    (19, 'Hot Chocolate','Beverages', 'MED', 'LRG', 255, 290, "hot-chocolate.jpg"),
+    (20, 'Mint Tea','Beverages', 'MED', 'LRG', 180, 200, "mint-tea.jpeg");
+
 
 
 DROP TABLE IF EXISTS `users`;
