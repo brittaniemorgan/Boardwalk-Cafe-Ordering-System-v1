@@ -1,2 +1,3 @@
-# comp2140-project
-#This is an ordering system for the Boardwalk Cafe.
+# comp2140-boardwalk
+
+i plan to change the layout of the Main Menu i just wanted to see things on the page, i also had to put some placeholder things in the database.
