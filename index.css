@@ -11,6 +11,8 @@ body{
     font-size: 30px;
 
     box-sizing: border-box;
+
+    overflow-x: hidden;
     
     
 }
@@ -28,6 +30,8 @@ header{
     background-image: url(images/landingPageBackground.png);
     background-size: 1520px;
     background-repeat: repeat-x;
+
+    overflow-wrap: break-word;
 }
 
 header h1{
@@ -49,9 +53,23 @@ header h5{
     padding-left: 24%;
 }
 
+#boardwalk-cafe{
+    position: absolute;
+    top: 0px;
+    color: rgb(255, 255, 255);
+    align-self: center;
+}
+
 h2{
     font-size: 50px;
 }
+
+/* used to change position welcome
+#contact-and-welcome{
+    position: relative;
+    top: -50px;
+}*/
+
 
 #boardwalkHeaderLogo{
     width: 22%;
@@ -59,8 +77,18 @@ h2{
     border-radius: 100%;
 }
 
+#menu-heading-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+#menu-heading-wrapper img{
+    width: 5%;
+    height: auto;
+}
+
 #menu-wrapper{
-    padding: 10%;
+    padding: 0% 10%;
 }
 
 #menu-items-wrapper{
@@ -114,4 +142,27 @@ h2{
 
 #order-list{
     background-color: rgb(213, 241, 118);
+}
+
+footer{
+    background-color: rgb(255, 193, 24);
+    padding: 5%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    color: #fff;
+    font-size: 15px;
+}
+
+footer img{
+    margin-right: 12px;
+    transition: 0.3s;
+    transform: scale(1);
+}
+
+footer img:hover{
+    transition: 0.3s;
+    transform: scale(1.2);
 }

@@ -17,15 +17,24 @@
     
             <br>
             <br>
-            <h5>Boardwalk Caf&eacute;</h5>
-            <h1>WEL</h1><br><h1>COME!</h1>
+            <h4 id="boardwalk-cafe">Boardwalk Caf&eacute;</h4>
+
+            <div id="contact-and-welcome">
+                <h5>876-977-6205</h2>  
+                <h1>WEL</h1><br><h1>COME!</h1>
+            </div>
             
-            <h5>Providing Healthy Choices Since 2016</h2>  
+            
+            
         </header>
 
        
         <section id="menu-wrapper">
-            <h2>Menu</h2>
+            <div id="menu-heading-wrapper">
+                <h2>Menu</h2>
+                <img src="images/menu-icon.png">
+            </div>
+        
             
             <div id="menu-items-wrapper">
                 
@@ -63,6 +72,21 @@
 
         </aside>
         
+        <footer>
+            <div>
+                <a href="https://www.google.com/maps?q=boardwalk+cafe+uwi&client=safari&rls=en&sxsrf=ALiCzsaaDE19JITymRQ19W3vY_puAZNZAQ:1669570799134&uact=5&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIECCMQJzIECCMQJzILCC4QgAQQxwEQrwE6BwgjELADECc6CggAEEcQ1gQQsAM6BwgAELADEEM6DAguEMgDELADEEMYAToPCC4Q1AIQyAMQsAMQQxgBOhIILhDHARCvARDIAxCwAxBDGAE6EAguEIAEEIcCEMcBEK8BEBQ6BQgAEIAEOgYIABAWEB5KBAhBGABKBAhGGAFQ4gZYmwxgww5oAXABeACAAdIBiAHaBJIBBTAuMy4xmAEAoAEByAESwAEB2gEGCAEQARgI&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjU5qP18877AhXiRDABHdd5AA0Q_AUoAXoECAEQAw">
+                    <img src="images/location-icon.png">
+                </a>
+
+                <p>Boardwalk Caf&eacute; - UWI, Mona</p>
+            </div>
+            
+            <div>
+                <a href="https://www.facebook.com/uwiboardwalkcafe"><img src="images/facebook-logo.png"></a>
+                <a href="https://www.instagram.com/theboardwalkcafeuwi/?hl=en"><img src="images/insta-logo.png"></a>
+            </div>
+            
+        </footer>
         
     </div>
     
