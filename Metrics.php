@@ -97,7 +97,7 @@ class Metrics{
             #return total orders, average time, earnings and number of orders at each location 
             return ['orders_today'=>$ordersToday, 'avg_time'=>$avg_time, 'uwi_num'=>$uwi_count, 'mona_num'=>$mona_count, 'hope_past_num'=>$hope_pastures_count, 'papine_num'=>$papine_count, 'old_hope_num'=>$old_hope_count, 'jc_num'=>$jc_count, 'uwi_earn'=>$uwi_earnings, 'mona_earn'=>$mona_earnings, 'hope_past_earn'=>$hope_pastures_earnings, 'papine_earn'=>$papine_earnings, 'old_hope_earn'=>$old_hope_earnings, 'jc_earn'=>$jc_earnings];
 
-            echo 'information retrieve successfully';
+            echo 'information retrieved successfully';
         }else{
             echo 'information couldnt be retrieved';
         }
@@ -108,43 +108,73 @@ class Metrics{
 
     function generateReport(){
 
-        $results = $this->retrieveDB();
+        #get information about the day's performance from the database
+        $results = $this->retrieveDB();?>
 
 
-        echo'
-        <!--JS Library to make charts-->
-        <canvas id="earnChart" style="width:100%;max-width:700px"></canvas>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-        <script>
+            <h3>Today's Orders</h3>
+            <h5>There were <?=$results['orders_today']?> orders placed today. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> seconds.</h5>
+            <p>Orders placed from UWI - <?=$results['uwi_num']?></p>
+            <p>Orders placed from Mona - <?=$results['mona_num']?></p>
+            <p>Orders placed from Hope Pastures - <?=$results['hope_past_num']?></p>
+            <p>Orders placed from Papine - <?=$results['papine_num']?></p>
+            <p>Orders placed from Old Hope Road - <?=$results['old_hope_num']?></p>
+            <p>Orders placed from Jamaica College - <?=$results['jc_num']?></p>
+
+            <canvas id="numChart" style="width:100%;max-width:700px"></canvas>
+
+            <p>Earnings from UWI - $<?=$results['uwi_earn']?></p>
+            <p>Earnings from Mona - $<?=$results['mona_earn']?></p>
+            <p>Earnings from Hope Pastures - $<?=$results['hope_past_earn']?></p>
+            <p>Earnings from Papine - $<?=$results['papine_earn']?></p>
+            <p>Earnings from Old Hope Road - $<?=$results['old_hope_earn']?></p>
+            <p>Earnings from Jamaica College - $<?=$results['jc_earn']?></p>
             
-            var xValues = ["UWI", "Mona", "Papine", "Hope Pastures", "Old Hope Road", "Jamaica College"];
-            var yValues = ['.$results["uwi_earn"].','.$results["mona_earn"].','.$results["papine_earn"].','.$results["hope_past_earn"].','.$results["old_hope_earn"].','.$results["jc_earn"].'];
-            var barColors = ["#A86959", "#F58F76", "#6BD7F6", "#A88938", "#F5CA5D", "#93BEF5"];
+            <canvas id="earnChart" style="width:100%;max-width:700px"></canvas>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-            new Chart("earnChart", {
-            type: "bar",
-            data: {
-                labels: xValues,
-                datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-                }]
-            },
-            options: {
-                legend: {display: false},
-                title: {
-                display: true,
-                text: "Todays earnings based on destination"
+        <?php echo'
+        <!--JS Library to make charts-->
+        
+        <script>
+
+            new Chart("numChart", {
+                type: "pie",
+                data: {
+                    labels: ["UWI", "Mona", "Papine", "Hope Pastures", "Old Hope Road", "Jamaica College"],
+                    datasets: [{
+                    backgroundColor: ["#A86959", "#F58F76", "#6BD7F6", "#A88938", "#F5CA5D", "#93BEF5"],
+                    data: ['.$results["uwi_num"].','.$results["mona_num"].','.$results["papine_num"].','.$results["hope_past_num"].','.$results["old_hope_num"].','.$results["jc_num"].']
+                    }]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: "Todays Orders Based On Destination"
+                    }
                 }
-            }
             });
 
-            
+            new Chart("earnChart", {
+                type: "bar",
+                data: {
+                    labels: ["UWI", "Mona", "Papine", "Hope Pastures", "Old Hope Road", "Jamaica College"],
+                    datasets: [{
+                    backgroundColor: ["#A86959", "#F58F76", "#6BD7F6", "#A88938", "#F5CA5D", "#93BEF5"],
+                    data: ['.$results["uwi_earn"].','.$results["mona_earn"].','.$results["papine_earn"].','.$results["hope_past_earn"].','.$results["old_hope_earn"].','.$results["jc_earn"].']
+                    }]
+                },
+                options: {
+                    legend: {display: false},
+                    title: {
+                    display: true,
+                    text: "Todays Earnings Based On Destination"
+                    }
+                }
+            });
+
         </script>';
-        
-        
-        
-        
+
     }
 }
 
