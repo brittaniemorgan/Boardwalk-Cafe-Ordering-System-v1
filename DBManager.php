@@ -57,7 +57,7 @@ class DBManager{
                 <?php } ?>
                         
                 
-                <button class="addToOrderButton" onclick="alert('naurr');">
+                <button class="addToOrderButton">
                     <div class="menuItem">
                         <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">
             

@@ -7,9 +7,15 @@
     <title>Place an Order With Us</title>
 
     <link rel="stylesheet" href="index.css">
+    <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
 
+    <div id="overLay">
+        <div id="popUp">
+            <button id="add-to-cart-btn">Add to Cart</button>
+        </div>
+    </div>
 
     <div id="wrapper">
         <header>
