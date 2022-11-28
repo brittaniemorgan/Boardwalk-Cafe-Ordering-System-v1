@@ -16,6 +16,8 @@ class DBManager{
         $this->password = $password;
         $this->dbname = $dbname;
 
+        date_default_timezone_set('EST');
+
         try{
             $this->conn = new PDO(
                 'mysql:host=' . $this->host . ';dbname=' . $this->dbname,
@@ -115,7 +117,7 @@ class DBManager{
     function addUser($name, $password){
         
         $already_here = $this->userInfo($name);
-        $hashPass = password_hash($password, PASSWORD_DEFAULT);
+        $hashPass = hash("sha512", $password);
 
         #constraint - choose a suitable size to limit password to to accomadate hash
         
@@ -176,18 +178,25 @@ class DBManager{
             return 'an error';
         }
 
-        #select last order - idk
+        #select last order - might need
         #$stmt = $this->conn->prepare("SELECT * FROM orders ORDER BY :id DESC LIMIT 1");
     }
 
     
    
-    function addOrder($total, $items, $date){
+    function addOrder($total, $items, $genLocation, $address){
 
-        $stmt = $this->conn->prepare("INSERT INTO `orders` (`total`, `items`, `date`) VALUES (:total, :items, :date)");
+        $date = date('d/M/Y');
+        $start_time = date('h:i a');
+        
+
+        $stmt = $this->conn->prepare("INSERT INTO `orders` (`total`, `items`, `date`, `gen_del_location`, `address`, `start_time`) VALUES (:total, :items, :date, :genLocation, :address, :start_time)");
         $stmt->bindParam(':total', $total, PDO::PARAM_INT);
         $stmt->bindParam(':items', $items, PDO::PARAM_STR);
         $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+        $stmt->bindParam(':genLocation', $genLocation, PDO::PARAM_STR);
+        $stmt->bindParam(':address', $address, PDO::PARAM_STR);
+        $stmt->bindParam(':start_time', $start_time, PDO::PARAM_STR);
 
         if($stmt->execute()){
             echo 'order placed';

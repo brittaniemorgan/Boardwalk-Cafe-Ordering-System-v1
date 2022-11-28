@@ -42,6 +42,7 @@
                 <?php
                     require_once 'DBManager.php';
                     require_once 'Employee.php';
+                    require_once 'Metrics.php';
 
                     #turn on error reporting
                     ini_set('display_errors', 'On');
@@ -54,11 +55,23 @@
                     $dbname = 'cafeInfo';
                     
                     $db = new DBManager($host, $username, $password, $dbname);
+                    
+                    
+
+                    // echo date('d/M/Y');
+                    // echo "\n\n".date('h:i a');
+                    
+
+                    $met = new Metrics($db);
+                    $met->generateReport();
 
                     $db->menuInfo();
+
+                   
+
                     
                     #goes through each menu item and prints its data
-                    #$db->menuInfo();
+                    
 
                     #$date = date('d, m, Y', strtotime('now'));
                     #$db->addOrder(140, 'juice and thing', $date);
