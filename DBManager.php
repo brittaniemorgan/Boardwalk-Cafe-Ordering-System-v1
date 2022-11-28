@@ -16,6 +16,7 @@ class DBManager{
         $this->password = $password;
         $this->dbname = $dbname;
 
+        
         date_default_timezone_set('EST');
 
         try{
@@ -24,9 +25,11 @@ class DBManager{
                 $this->username,
                 $this->password
             );
+            
         }catch(Exception $e){
             die($e->getMessage());
         }
+        
         
     }
 
