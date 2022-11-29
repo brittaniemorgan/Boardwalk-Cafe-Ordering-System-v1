@@ -13,7 +13,7 @@
 
     <div id="overLay">
         <div id="popUp">
-            <button id="add-to-cart-btn">Add to Cart</button>
+            <div id="item-description"></div>
         </div>
     </div>
 

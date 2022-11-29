@@ -223,6 +223,40 @@ class DBManager{
     }
 
 
+    function getFoodDescription($foodID){
+        $stmt = $this->conn->query("SELECT * FROM menuItems WHERE id = $foodID");
+        $results = $stmt->fetchAll();
+
+        ?>
+        <div>
+            <h2><?= $results[0]["name"]?></h2>
+            <form id="" action="" method="POST">
+                <?php 
+                    if ($results[0]["large_size"] != null):
+                ?>
+                    <p>Please select a meal size</p>
+                    <input type="radio" name="mealSizeBtn" id="medium-meal" required> Medium - $<?=$results[0]["price"]?></input>
+                    <input type="radio" name="mealSizeBtn" id="large-meal"> Large - $<?=$results[0]["large_price"]?></input>
+
+                <?php endif; 
+                    if ($results[0]["name"] == "breakfast"):
+                ?>
+                <p>Choose a side</p>
+                    <input type="radio" name="side" id="toast">Toast</input>
+                    <input type="radio" name="side" id="hash-browns">Hash Browns</input> 
+                    <input type="radio" name="side" id="bagels">Bagels</input>
+                    <input type="radio" name="side" id="french-toast">French Toast</input>   
+                <?php endif?>            
+                <label for="comments">Comments:</label>
+                <textarea name="comments"></textarea>
+                <button type="submit" id="add-to-cart-btn">Add to Cart</button>
+            </form>
+
+        </div>
+        <?php
+    }
+
+
 
 
 
