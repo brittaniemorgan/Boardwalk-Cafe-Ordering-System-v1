@@ -16,9 +16,33 @@ window.onload = function(){
             
         }
 
+        sendUpdate(url){
+            let request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+            if (request.readyState === XMLHttpRequest.DONE){
+                if (request.status === 200){
+                    alert("ok");
+                }}
+            }
+            request.open("GET", url);
+            request.send();   
+        }
+
         getFoodDetails(foodID){
             var url = "http://localhost/comp2140-project.v2/comp2140-project/foodDescription.php?foodID=" + foodID;
             this.sendData(url);
+        }
+
+        getOrders(){
+            let request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+            if (request.readyState === XMLHttpRequest.DONE){
+                if (request.status === 200){
+                    document.querySelector("#orders-display").innerHTML = request.responseText;
+                }}
+            }
+            request.open("GET", "http://localhost/comp2140-project.v2/comp2140-project/Server.php");
+            request.send();  
         }
     }
     var reqManager = new RequestManager();
@@ -36,10 +60,22 @@ window.onload = function(){
         overlay.style.display = "none";
     }
 
+    function updateOrder(e){
+        var btn = e.target;
+        var foodID = btn.getAttribute("id");
+        reqManager.sendUpdate("http://localhost/comp2140-project.v2/comp2140-project/Server.php?foodId=" + foodID);
+    }
+
     var foodButtons = document.getElementsByClassName("addToOrderButton");
     for (var i = 0; i < foodButtons.length ; i++){
         foodButtons[i].addEventListener("click",openPopUp);
     }
-    document.querySelector("#close-btn").addEventListener("click", closePopUp);
+    //document.querySelector("#close-btn").addEventListener("click", closePopUp);
+    reqManager.getOrders();
+    var foodButtons = document.getElementsByClassName("mark-ready");
+    for (var i = 0; i < foodButtons.length ; i++){
+        foodButtons[i].addEventListener("click",openPopUp);
+    }
 
+    
 }

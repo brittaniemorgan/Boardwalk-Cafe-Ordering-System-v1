@@ -1,15 +1,19 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 require_once 'DBManager.php';
+require "Person.php";
     
-class Employee{
+class Employee extends Person{
 
     #connects to databse
     private $dbmanager;
-    private $conn;
+    protected $conn;
 
-    function __construct($dbmanager)
+    function __construct($name, $username, $password,$dbmanager)
     {
+        $this->$name = $name;
+        $this->$username = $username;
+        $this->$password = $password;
         $this->dbmanager = $dbmanager;
         $this->conn = $this->dbmanager->getConn();
     }
@@ -64,5 +68,4 @@ class Employee{
         }
     }
 }
-
 ?>
