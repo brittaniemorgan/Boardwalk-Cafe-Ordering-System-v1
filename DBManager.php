@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="index.css">
 <script src="script.js" type="text/javascript"></script>
 <?php
+#session_start();
+#$_SESSION["user"] = "user123";
  
 class DBManager{
 
@@ -232,18 +234,19 @@ class DBManager{
         ?>
         <div>
             <h2><?= $results[0]["name"]?></h2>
-            <form id="" action="" method="POST">
+            <form id="" action="viewCart.php" method="POST">
+                <textarea name="foodID" style="display: none;"><?=$foodID?></textarea>
                 <?php 
                     if ($results[0]["large_size"] != null):
                 ?>
                     <p>Please select a meal size</p>
-                    <input type="radio" name="mealSizeBtn" id="medium-meal" required> Medium - $<?=$results[0]["price"]?></input>
-                    <input type="radio" name="mealSizeBtn" id="large-meal"> Large - $<?=$results[0]["large_price"]?></input>
+                    <input type="radio" name="mealSize" value="Medium" required> Medium - $<?=$results[0]["price"]?></input>
+                    <input type="radio" name="mealSize" value="Large"> Large - $<?=$results[0]["large_price"]?></input>
 
                 <?php else:?>
                     <p> Price $<?=$results[0]["price"]?></p>
                 <?php endif; 
-                    if ($results[0]["name"] == "breakfast"):
+                    if ($results[0]["category"] == "breakfast"):
                 ?>
                 <p>Choose a side</p>
                     <input type="radio" name="side" value="toast">Toast</input>

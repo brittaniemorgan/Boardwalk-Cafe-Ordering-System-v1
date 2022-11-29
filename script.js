@@ -1,4 +1,5 @@
 window.onload = function(){
+    var orderList;
     class RequestManager{
         constructor(){}
         
@@ -16,7 +17,7 @@ window.onload = function(){
         }
 
         getFoodDetails(foodID){
-            var url = "http://localhost/comp2140-project.v2/comp2140-project/foodDes.php?foodID=" + foodID;
+            var url = "http://localhost/comp2140-project.v2/comp2140-project/foodDescription.php?foodID=" + foodID;
             this.sendData(url);
         }
     }

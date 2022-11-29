@@ -47,6 +47,7 @@
                 
 
                 <?php
+                    #$_SESSION["user"] = "user123";
                     require_once 'DBManager.php';
                     
 
