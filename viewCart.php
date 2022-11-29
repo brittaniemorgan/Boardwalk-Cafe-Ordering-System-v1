@@ -47,15 +47,6 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
         <div class="Header">
             <h3 class="Cart">Your Cart</h3>
             <h5 class="Remove">Remove All</h5>
-            <?php foreach($items as $item): ?>
-                <tr>
-                    <td><?=$item[0]?></td>
-                    <td><?=$item[1]?></td>
-                    <td><?=$item[2]?></td>
-                    <td><?=$item[3]?></td>
-                    <td><?=$item[4]?></td>
-                </tr>
-            <?php endforeach?>
         </div>
 
         <div class="Cart-Items">
