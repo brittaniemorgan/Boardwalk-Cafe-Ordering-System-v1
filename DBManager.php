@@ -246,10 +246,10 @@ class DBManager{
                     if ($results[0]["name"] == "breakfast"):
                 ?>
                 <p>Choose a side</p>
-                    <input type="radio" name="side" id="toast">Toast</input>
-                    <input type="radio" name="side" id="hash-browns">Hash Browns</input> 
-                    <input type="radio" name="side" id="bagels">Bagels</input>
-                    <input type="radio" name="side" id="french-toast">French Toast</input>   
+                    <input type="radio" name="side" value="toast">Toast</input>
+                    <input type="radio" name="side" value="hash-browns">Hash Browns</input> 
+                    <input type="radio" name="side" value="bagels">Bagels</input>
+                    <input type="radio" name="side" value="french-toast">French Toast</input>   
                 <?php endif?>            
                 <label for="comments">Comments:</label>
                 <textarea name="comments"></textarea>
