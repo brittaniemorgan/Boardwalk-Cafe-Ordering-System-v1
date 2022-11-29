@@ -30,33 +30,24 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
 
 ?>
 
-    <body>
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Cart</title>
-            <link rel="stylesheet" href="viewCart.css">
-            <script src="OrderProcessor.js"></script>
-        </head>
-       
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="viewCart.css">
+</head>
+<body>
     <!-- Just added -->
     <h1 class="title-name">Boardwalk Cafe's Checkout</h1>
     <!--  -->
     <div class="Cart-Container">
         <div class="Header">
-            <h3 class="Cart">Your Cart</h3> <!--
-            <table>
-                <tr>
-                    <th>Items</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-                    <th>Cost</th>
-                    <th>Comments</th>
-                </tr>
-                <?php foreach($items as $item): ?>
+            <h3 class="Cart">Your Cart</h3>
+            <h5 class="Remove">Remove All</h5>
+            <?php foreach($items as $item): ?>
                 <tr>
                     <td><?=$item[0]?></td>
                     <td><?=$item[1]?></td>
@@ -64,18 +55,17 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
                     <td><?=$item[3]?></td>
                     <td><?=$item[4]?></td>
                 </tr>
-                <?php endforeach?>
-            </table> -->
-            <h5 class="Remove">Remove All</h5>
+            <?php endforeach?>
         </div>
 
         <div class="Cart-Items">
-        <?php   $total = 0;
+            <?php   
+                $total = 0;
                 $totalItems = 0;
                 foreach($items as $item): 
                 $total += $item[3] * $item[2];
                 $totalItems += 1 * $item[2];
-        ?>
+            ?>
             <div class="info">
                 <h1 class="name"><?=$item[0]?> (<?=$item[1]?>)</h1>
             </div>
@@ -94,7 +84,7 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
             <div class="amount">$<?=$total?>.00</div>
             <button class="remove">Remove</button>
         </div>
-        
+
         <hr>
         <?php endforeach?>
         <div class="checkout">
@@ -103,7 +93,7 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
                     <div class="Total-checkout">Total</div>
                     <div class="Totalitem"><?=$totalItems?> items</div>
                 </div>
-                <div class="total-value" name = "total">$<?=$total?>.00</div>
+                <div class="total-value">$<?=$total?>.00</div>
             </div>
             <button class="button-checkout">Checkout</button>
         </div>
@@ -111,8 +101,3 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
 
 </body>
 </html>
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
