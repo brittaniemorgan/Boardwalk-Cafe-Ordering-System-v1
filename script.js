@@ -22,12 +22,15 @@ window.onload = function(){
     }
     var reqManager = new RequestManager();
 
-    function openPopUp() {
+    function openPopUp(e) {
         console.log("woii"); 
-        /*var foodID = document.querySelector(".itemID").innerHTML ;
-        console.log(foodID);
+        var btn = e.target;
+        console.log(e.target);
+        console.log(btn.getAttribute("itemid"));
+       // var foodID = document.querySelector(".itemID").innerHTML ;
+       // console.log(foodID);
         //document.querySelector("#food-description").innerHTML = "";
-        reqManager.getFoodDetails(foodID);*/
+        //reqManager.getFoodDetails(foodID);
         var overlay = document.querySelector("#overLay");
         overlay.style.display = "block";
     }
@@ -36,7 +39,14 @@ window.onload = function(){
         var overlay = document.querySelector("#overLay");
         overlay.style.display = "none";
     }
+/*
+    function testID(e){
+        var btn = e.target;
+        console.log(btn.getAttribute("id"));
+    }
 
+    document.querySelector("#add-to-cart-btn").addEventListener("click", testID);
+*/
 
     var foodButtons = document.getElementsByClassName("addToOrderButton");
     for (var i = 0; i < foodButtons.length ; i++){

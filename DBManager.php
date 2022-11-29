@@ -57,25 +57,25 @@ class DBManager{
                 <?php } ?>
                         
                 
-                <button class="addToOrderButton">
-                    <div class="menuItem">
-                        <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">
-            
-                        <div class="menuItemContent">
+                <button class="addToOrderButton" id="<?=$results[$x]["id"]?>">
+                    <div class="menuItem" id="<?=$results[$x]["id"]?>">
+                        <img src=<?="images/".$results[$x]['image']?> class="menuItemPic" itemid="<?=$results[$x]["id"]?>">
+
+                        <div class="menuItemContent"  itemid="<?=$results[$x]["id"]?>">
                             
-                            <h5><?=$results[$x]['name']?></h5>
-                            <div class="prices">
+                            <h5 itemid="<?=$results[$x]["id"]?>"><?=$results[$x]['name']?></h5>
+                            <div class="prices" itemid="<?=$results[$x]["id"]?>">
                                 <?php 
                                     #checks if the item comes in a large size and prints the large size value
                                     if(intval($results[$x]['large_price']) > 0 and intval($results[$x]['price']) > 0){?>
                                             
-                                        <h6><?=$results[$x]['medium_size']?> - $<?=$results[$x]['price']?></h6>
-                                        <h6><?=$results[$x]['large_size']?> - $<?=$results[$x]['large_price']?></h6>
+                                        <h6 itemid="<?=$results[$x]["id"]?>"><?=$results[$x]['medium_size']?> - $<?=$results[$x]['price']?></h6>
+                                        <h6 itemid="<?=$results[$x]["id"]?>"><?=$results[$x]['large_size']?> - $<?=$results[$x]['large_price']?></h6>
                                             
                                             
                                     <?php }elseif(intval($results[$x]['price']) > 0){?>
                                              
-                                        <h6>Price - $<?=$results[$x]['price']?></h6>
+                                        <h6 itemid="<?=$results[$x]["id"]?>">Price - $<?=$results[$x]['price']?></h6>
                                     <?php } ?>       
                                                  
                                     
