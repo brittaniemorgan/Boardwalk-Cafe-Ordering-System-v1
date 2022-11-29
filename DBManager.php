@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="index.css">
+<script src="script.js" type="text/javascript"></script>
 <?php
  
 class DBManager{
@@ -238,6 +240,8 @@ class DBManager{
                     <input type="radio" name="mealSizeBtn" id="medium-meal" required> Medium - $<?=$results[0]["price"]?></input>
                     <input type="radio" name="mealSizeBtn" id="large-meal"> Large - $<?=$results[0]["large_price"]?></input>
 
+                <?php else:?>
+                    <p> Price $<?=$results[0]["price"]?></p>
                 <?php endif; 
                     if ($results[0]["name"] == "breakfast"):
                 ?>

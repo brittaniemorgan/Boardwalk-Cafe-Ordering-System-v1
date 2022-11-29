@@ -14,6 +14,7 @@
     <div id="overLay">
         <div id="popUp">
             <div id="item-description"></div>
+            <button id="close-btn"> Close</button>
         </div>
     </div>
 

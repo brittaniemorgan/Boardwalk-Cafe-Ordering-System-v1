@@ -7,7 +7,6 @@ window.onload = function(){
             request.onreadystatechange = function(){
             if (request.readyState === XMLHttpRequest.DONE){
                 if (request.status === 200){
-                    console.log("OK");
                     document.querySelector("#item-description").innerHTML = request.responseText;
                 }}
             }
@@ -24,11 +23,8 @@ window.onload = function(){
     var reqManager = new RequestManager();
 
     function openPopUp(e) {
-        console.log("woii"); 
         var btn = e.target;
         var foodID = btn.getAttribute("itemid");
-        console.log(foodID);
-        //ocument.querySelector("#item-description").innerHTML = reqManager.getFoodDetails(foodID);
         reqManager.getFoodDetails(foodID);
         var overlay = document.querySelector("#overLay");
         overlay.style.display = "block";
@@ -43,9 +39,6 @@ window.onload = function(){
     for (var i = 0; i < foodButtons.length ; i++){
         foodButtons[i].addEventListener("click",openPopUp);
     }
+    document.querySelector("#close-btn").addEventListener("click", closePopUp);
 
-/*    document.querySelector("add-to-cart-btn").addEventListener("click", () => {
-        e.preventDefault();
-        document.querySelector("#item-description").innerHTML = "Order Recieved!";
-    });*/
 }
