@@ -31,6 +31,16 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
 ?>
 
     <body>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Cart</title>
+            <link rel="stylesheet" href="viewCart.css">
+            <script src="OrderProcessor.js"></script>
+        </head>
        
     <!-- Just added -->
     <h1 class="title-name">Boardwalk Cafe's Checkout</h1>
@@ -60,7 +70,12 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
         </div>
 
         <div class="Cart-Items">
-        <?php foreach($items as $item): ?>
+        <?php   $total = 0;
+                $totalItems = 0;
+                foreach($items as $item): 
+                $total += $item[3] * $item[2];
+                $totalItems += 1 * $item[2];
+        ?>
             <div class="info">
                 <h1 class="name"><?=$item[0]?> (<?=$item[1]?>)</h1>
             </div>
@@ -71,12 +86,12 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
         
         <div class="count">
             <div class="button">-</div>
-            <div class="num">0</div>
+            <div class="num"><?=$item[2]?></div>
             <div class="button">+</div>
         </div>
 
         <div class="price">
-            <div class="amount">$0.00</div>
+            <div class="amount">$<?=$total?>.00</div>
             <button class="remove">Remove</button>
         </div>
         
@@ -86,9 +101,9 @@ array_push($items, [$name,$size,1, $price, $comments]); #work on getting quantit
             <div class="total">
                 <div>
                     <div class="Total-checkout">Total</div>
-                    <div class="Totalitem">X items</div>
+                    <div class="Totalitem"><?=$totalItems?> items</div>
                 </div>
-                <div class="total-value">$0.00</div>
+                <div class="total-value" name = "total">$<?=$total?>.00</div>
             </div>
             <button class="button-checkout">Checkout</button>
         </div>
