@@ -113,7 +113,7 @@ class Metrics{
 
 
             <h3>Today's Orders</h3>
-            <h5>There were <?=$results['orders_today']?> orders placed today. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> seconds.</h5>
+            <h5>There were <?=$results['orders_today']?> orders placed today. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
             <p>Orders placed from UWI - <?=$results['uwi_num']?></p>
             <p>Orders placed from Mona - <?=$results['mona_num']?></p>
             <p>Orders placed from Hope Pastures - <?=$results['hope_past_num']?></p>
