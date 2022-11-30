@@ -79,6 +79,9 @@ window.onload = function(){
         readyButtons[i].addEventListener("click", updateOrder);
     }
 
-
+    var prepareButtons = document.getElementsByClassName("mark-preparing");
+    for (var i = 0; i < readyButtons.length ; i++){
+        readyButtons[i].addEventListener("click", updateOrderPreparing);
+    }
     
 }
