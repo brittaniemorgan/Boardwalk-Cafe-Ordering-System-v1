@@ -90,6 +90,7 @@ class DBManager{
                         
                     <?php } ?>
         </div><?php
+        return $results;
     }
     #stmt usually doesnt execute when the vallues we are trying to insert bigger than the value defined in the header insql
     #working
