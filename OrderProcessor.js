@@ -36,20 +36,42 @@ class OrderProcessor {
                 
     }
 
+
+
+
+   
+    orderlst = [];
+
     saveOrder(){
-        saveOrderBtn = document.getElementById("button-checkout");
+        saveOrderBtn = document.getElementById("addToCart");
         saveOrderBtn.addEventListener("click", function(){
-            orderitem1 = document.getElementById("").value;
-            quantity1 = document.getElementById("").value;
+            orderitem1 = document.getElementById("order").value;
 
-            orderitem2 = document.getElementById("").value;
-            quantity2 = document.getElementById("").value;
+            orderlst = orderlst +[orderitem1]
 
-            const orderlst = [orderitem1,orderitem2];
+
+            
+             
+
+
+            // orderitem2 = document.getElementById("").value;
+            // quantity2 = document.getElementById("").value;
 
             newOrder = new Order(orderlst,address);
-
             //INSERT INTO table1 (column1, column2,...) VALUES (value1, value2,...);
+        });
+    }
+
+    viewCart(){
+        viewCartBtn = document.getElementById("addToCart");
+        viwCartBtn.addEventListener("click", function(){
+            let itemdisplay = document.getElementsByClassName("items").value;
+
+            let items = itemdisplay[0];
+            items.innerHTML = orderlst;
+
+
+            
         });
     }
 
