@@ -42,50 +42,7 @@ class DBManager{
         $stmt = $this->conn->query("SELECT * FROM menuItems ORDER BY category");
         $results = $stmt->fetchAll();
 
-        ?><div>
-            
-        <?php
-            #iterates through each row of the data base
-            for ($x = 0; $x < count($results); $x++){ 
-
-
-                #prints item category when item is the first one in the category       
-                if($x > 0 and $results[$x-1]['category'] != $results[$x]['category']){?>
-                    <h3 class="category-heading"><?=$results[$x]['category']?></h3>
-                <?php }elseif($x === 0){?>
-                    <h3 class="category-heading"><?=$results[$x]['category']?></h3>
-                <?php } ?>
-                        
-                
-                <button class="addToOrderButton" onclick="alert('naurr');">
-                    <div class="menuItem">
-                        <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">
-            
-                        <div class="menuItemContent">
-                            
-                            <h5><?=$results[$x]['name']?></h5>
-                            <div class="prices">
-                                <?php 
-                                    #checks if the item comes in a large size and prints the large size value
-                                    if(intval($results[$x]['large_price']) > 0 and intval($results[$x]['price']) > 0){?>
-                                            
-                                        <h6><?=$results[$x]['medium_size']?> - $<?=$results[$x]['price']?></h6>
-                                        <h6><?=$results[$x]['large_size']?> - $<?=$results[$x]['large_price']?></h6>
-                                            
-                                            
-                                    <?php }elseif(intval($results[$x]['price']) > 0){?>
-                                             
-                                        <h6>Price - $<?=$results[$x]['price']?></h6>
-                                    <?php } ?>       
-                                                 
-                                    
-                                </div>
-                        </div>
-                    </div>
-                </button>
-                        
-                    <?php } ?>
-        </div><?php
+        return $results;
     }
     #stmt usually doesnt execute when the vallues we are trying to insert bigger than the value defined in the header insql
     #working
