@@ -95,7 +95,7 @@
         <h4>Edit Menu Item</h4>
         
         <form action="Manager.php" method="post" id="edit-form">
-            <label>Blank Fields Wont Be Updated<br><br></label>
+            
             <select name="menu-for-edit" id="menu-for-edit">
                 <?php
                     $results = $db->menuInfo();

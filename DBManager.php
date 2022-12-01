@@ -61,7 +61,7 @@ class DBManager{
                 #tester - later delete
                 foreach($results as $row){
                     $info = $row;
-                    echo $row['name'];
+                    // echo $row['name'];
                 }
                 return $info;
             

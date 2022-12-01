@@ -1,8 +1,8 @@
 <?php
-    
+    session_start();
+    $_SESSION['username'] = "brie";
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +46,7 @@
 
                 <?php
                     require_once 'DBManager.php';
+                    require_once 'Rewards.php';
                     
 
                     #turn on error reporting
@@ -59,6 +60,7 @@
                     $dbname = 'cafeInfo';
                     
                     $db = new DBManager($host, $username, $password, $dbname);
+                    $rewards = new Rewards($db);
                     
                     #goes through each menu item and prints its data
                     $results = $db->menuInfo();?>
@@ -115,8 +117,8 @@
                                 <h3 class="category-heading"><?=$results[$x]['category']?></h3>
                             <?php } ?>
                                     
-                            
-                            <button class="addToOrderButton" onclick="alert('naurr');">
+                           
+                            <button class="addToOrderButton" onclick="alert('no');">
                                 <div class="menuItem">
                                     <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">
                         
@@ -139,9 +141,11 @@
                                                             
                                                 
                                             </div>
+                                        
                                     </div>
                                 </div>
                             </button>
+                           
                             <?php }           
                         } ?>
                     </div>
@@ -149,8 +153,10 @@
             </div>
         </section>
 
-        <aside id="order-list">
-            flea
+        <aside id="points">
+            <?php
+                echo $rewards->retrieveRewardsData()." points";
+            ?>
         </aside>
         
         <footer>
@@ -168,6 +174,15 @@
             </div>
             
         </footer>
+
+        <?php
+            $date = date('d/M/Y');
+            if($date == "31/Dec/2022"){
+                $rewards->expirePoints();
+            }
+
+            #$rewards->applyPoints();
+        ?>
         
     </div>
     
