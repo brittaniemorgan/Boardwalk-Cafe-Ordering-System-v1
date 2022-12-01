@@ -20,9 +20,15 @@
             protected $conn;
             
               
-            function DeliveryPersonnel__construct ($employee, $dbmanager) {  
-              $this->dbmanager = $dbmanager;
-              $this->employee = $employee;
+            function __construct () {  
+             # $this->dbmanager = $dbmanager;
+              #$this->employee = $employee;
+              $host = 'localhost';
+              $username = 'boardwalk_user';
+              $password = 'password123';
+              $dbname = 'cafeInfo';
+              
+              $this->dbmanager = new DBManager($host, $username, $password, $dbname);
               $this->conn = $this->dbmanager->getConn();
               
               // $this->status = $status;
@@ -68,40 +74,16 @@
             $stmts = $this->conn->query("SELECT * FROM `orders` WHERE `delivered` = 'NO'");
             $delivery = $stmts->fetchAll();
            ?>
-            <h2>Orders</h2>
-            <?php foreach($orders as $order):?>
-            
-            <div id="orderDiv<?=$order["id"]?>">
-                <h3>Order #<?=$order["id"]?></h3>
-                <ul><?php
-                    $items = explode(",",$order["items"]);
-                    foreach($items as $item):
-                        $foodID = (int) substr($item,0,2);
-                        $foodItems = $this->conn->query("SELECT * FROM menuItems WHERE id =$foodID");
-                        $foodResult = $foodItems->fetchAll();
-                        $foodName = $foodResult[0]["name"];
-                        $foodCategory = $foodResult[0]["category"];
-                ?>
-                    
-                        <li id="<?=$order["id"]?>>"><?=$foodName?>, <?=substr($item,3)?></li>
-                        <p class="item-category">Category: <?=$foodCategory?></p>
-                    <?php endforeach?>
-                </ul>
-                <p class="order-status">Status: <?=$order["status"]?></p>                
-                <!-- <button id="<?=$order["id"]?>" class="mark-ready">Mark as Ready</button> -->
-            </div>
-            
-            <?php endforeach?>
 
             <h3>Delivery Location</h3>
             
             <?php foreach($delivery as $deliveryfor):?>
               
-              <div id="DeliveryDiv<?$deliveryfor["idDel"]?>">
-                  <h4>Customer's Address<?=$deliveryfor["idDel"]?></h4>
+              <div id="DeliveryDiv<?=$deliveryfor["id"]?>">
+                  <h4>Customer's Address <?=$deliveryfor["address"]?></h4>
                   <ul><?php
-                      $deliveryLocate = explode($deliveryfor["address"]);
-                      foreach($address as $addresses):
+                      $deliveryLocate = explode(",",$deliveryfor["address"]);
+                      foreach($deliveryLocate as $addresses):
                         // $delID = (int) substr($addresses,0,2);
                         $delLocation = $this->conn->query("SELECT * FROM orders WHERE delivered = 'NO'");
                         $delResult = $delLocation->fetchAll();
@@ -113,6 +95,7 @@
                 <p class="delAddress">Customer's General Location: <?=$delGeneralLocate?></p> 
               </div> 
             <?php endforeach?>
+            <?php endforeach?>
 
 
                 <!-- <p class="delAddress">Customer's Address: <?=$deliveryfor["address"]?></p>  -->
@@ -120,21 +103,11 @@
                 
         <?php }
     }
-    function okay(){
-        echo "okay";
-    }
-    $host = 'localhost';
-    $username = 'boardwalk_user';
-    $password = 'password123';
-    $dbname = 'cafeInfo';
 
-    $db = new DBManager($host, $username, $password, $dbname);
-    $server = new Server("john", "john123", "pwd123", $db);
-    $server->viewOrders();
-    if (isset($_GET["orderId"])){
-        $server->updateStatus($_GET["orderId"]);
-    }                 
-        
+    $deliveryPerson = new DeliveryPersonnel();
+    $deliveryPerson->viewOrders();
+    
+ 
     ?>
     
 </body>
