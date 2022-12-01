@@ -35,7 +35,7 @@
                 <div class="overlay-content">
                 <a href="index.php">Home</a>
                 <a href="#">Previous Orders</a>
-                <a href="#">Log Out</a>
+                <a href="" onclick="logOff()">Log Out</a>
                 <a href="#">Contact</a>
                 <a href="adminLogIn.php">Admin</a>
                 </div>
@@ -62,6 +62,12 @@
 
                 <?php
                     session_start();
+                    function logOff(){
+                        if (isset($_SESSION['user'])) {
+                            unset($_SESSION['user']);//fix
+                            header('Location: index.php');
+                        }
+                    }
                     $_SESSION["user"] = ["temp","temp",[]];
                     require_once 'DBManager.php';
                     
