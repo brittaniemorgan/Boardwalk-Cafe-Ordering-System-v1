@@ -7,12 +7,13 @@ require_once 'DBManager.php';
 class Metrics{
 
     private $conn;
-    private $dbmanager;
+    
 
     function __construct($dbmanager)
-    {
+    {   
+        #creates a connection to the database
         $this->conn = $dbmanager->getConn();
-        $this->dbmanager = $dbmanager;
+
     }
 
     function retrieveDB(){
@@ -42,14 +43,14 @@ class Metrics{
         $stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE `date` = :date");
         $stmt->bindParam(':date', $date, PDO::PARAM_STR);
         
-        #tries to execute statement
+        #tries to execute statement, return error if the database couldnt be queried
         if($stmt->execute()){
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             $ordersToday = $stmt->rowcount();
 
            
-
+            #count the earnings and amount of order placed at each general delivery location (uwi, mona, papine, hope pastures, old hope road and jam college).
             foreach($results as $row){
                                 
                 switch($row['gen_del_location']){
@@ -92,7 +93,7 @@ class Metrics{
 
             #finds average time, divides the sum of elapsed time on each order by the numnber of orders
             
-            $avg_time = abs($totalTime/$ordersToday);
+            $avg_time = round(abs($totalTime/$ordersToday));
             
             #return total orders, average time, earnings and number of orders at each location 
             return ['orders_today'=>$ordersToday, 'avg_time'=>$avg_time, 'uwi_num'=>$uwi_count, 'mona_num'=>$mona_count, 'hope_past_num'=>$hope_pastures_count, 'papine_num'=>$papine_count, 'old_hope_num'=>$old_hope_count, 'jc_num'=>$jc_count, 'uwi_earn'=>$uwi_earnings, 'mona_earn'=>$mona_earnings, 'hope_past_earn'=>$hope_pastures_earnings, 'papine_earn'=>$papine_earnings, 'old_hope_earn'=>$old_hope_earnings, 'jc_earn'=>$jc_earnings];
@@ -108,11 +109,9 @@ class Metrics{
 
     function generateReport(){
 
-        #get information about the day's performance from the database
+        #get information about the day's performance from the database and represnts it in a graphical form
         $results = $this->retrieveDB();?>
 
-
-            <h3>Today's Orders</h3>
             <h5>There were <?=$results['orders_today']?> orders placed today. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
             <p>Orders placed from UWI - <?=$results['uwi_num']?></p>
             <p>Orders placed from Mona - <?=$results['mona_num']?></p>
@@ -121,6 +120,7 @@ class Metrics{
             <p>Orders placed from Old Hope Road - <?=$results['old_hope_num']?></p>
             <p>Orders placed from Jamaica College - <?=$results['jc_num']?></p>
 
+            <!--Canvas to place pie chart on-->
             <canvas id="numChart" style="width:100%;max-width:700px"></canvas>
 
             <p>Earnings from UWI - $<?=$results['uwi_earn']?></p>
@@ -130,6 +130,7 @@ class Metrics{
             <p>Earnings from Old Hope Road - $<?=$results['old_hope_earn']?></p>
             <p>Earnings from Jamaica College - $<?=$results['jc_earn']?></p>
             
+            <!--Canvas to place bar chart on-->
             <canvas id="earnChart" style="width:100%;max-width:700px"></canvas>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
