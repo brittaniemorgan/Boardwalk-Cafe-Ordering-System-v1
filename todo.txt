@@ -1,3 +1,2 @@
-1. Probably put location column on order class
-3. metrics
-4. order needs a time start and a time end
+1. order out of stock controlled by manager
+2.

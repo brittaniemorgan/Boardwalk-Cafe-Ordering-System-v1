@@ -8,21 +8,35 @@
             $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN'");
             $this->orders = $stmt->fetchAll();  
         }*/
-        function updateStatus($orderId){
-            $stmt = $this->conn->prepare("UPDATE `orders` SET `status` = 'READY' WHERE `id` = :orderId");
-            $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+        function updateOrder($orderId, $action){
+            if($action == "updateReady"){
+                $date = date("H:i");
+                $stmt = $this->conn->prepare("UPDATE `orders` SET `status` = 'CLSD' WHERE `id` = :orderId");
+                //UPDATE `orders` SET `status` = 'CLSD', `end_time` = "90" WHERE `id` = 4;
+                $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
             
-            if($stmt->execute()){
-                    echo 'status updated';
-            }else{
-                    echo 'couldnt updated status';
+                if($stmt->execute()){
+                        echo 'status updated';
+                }else{
+                        echo 'couldnt updated status';
+                }
+            }
+            if($action == "updatePrepare"){
+                $stmt = $this->conn->prepare("UPDATE `orders` SET `status` = 'PREP' WHERE `id` = :orderId");
+                $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+            
+                if($stmt->execute()){
+                        echo 'status updated';
+                }else{
+                        echo 'couldnt updated status';
+                }
             }
             $this->viewOrders();
            
         }
 
         public function viewOrders(){
-            $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN'");
+            $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN' OR `status` = 'PREP' ORDER BY `start_time` ASC");
             $orders = $stmt->fetchAll();
            ?>
             <h2>Orders</h2>
@@ -44,7 +58,7 @@
                         <p class="item-category">Category: <?=$foodCategory?></p>
                     <?php endforeach?>
                 </ul>
-                <p class="order-status">Status: <?=$order["status"]?></p>
+                <p class="order-status-" id="order-status-<?=$order["id"]?>">Status: <?=$order["status"]?></p>
                 <button id="<?=$order["id"]?>" class="mark-preparing">Mark as Preparing</button>
                 <button id="<?=$order["id"]?>" class="mark-ready">Mark as Ready</button>
             </div>
@@ -52,9 +66,6 @@
             
                 
         <?php }
-    }
-    function okay(){
-        echo "okay";
     }
     $host = 'localhost';
     $username = 'boardwalk_user';
@@ -64,8 +75,8 @@
     $db = new DBManager($host, $username, $password, $dbname);
     $server = new Server("john", "john123", "pwd123", $db);
     $server->viewOrders();
-    if (isset($_GET["orderId"])){
-        $server->updateStatus($_GET["orderId"]);
+    if (isset($_GET["orderId"]) && isset($_GET['action'])){
+        $server->updateOrder($_GET["orderId"], $_GET['action']);
     }
 
 ?>

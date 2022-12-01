@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (isset($_SESSION['admin'])) {
-        unset($_SESSION['admin']);
+        unset($_SESSION['admin']);//fix
         header('Location: index.php');
     }
 
@@ -18,7 +18,7 @@
             $_SESSION['admin'] = $response;
             switch($_SESSION['admin'][2]){
                 case 'manager':
-                    header('Location: manager.php'); 
+                    header('Location: managerPage.php'); 
                     break;
                 case 'server':
                     header('Location: Server.php'); 

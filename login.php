@@ -1,8 +1,13 @@
 <?php
     session_start();
+    if (isset($_SESSION['user'])) {
+        unset($_SESSION['user']);
+        //header('Location: index.php');
+    }
+    /*
     if (isset($_SESSION['user']) && $_SESSION['user'] != "temp") {
         header('Location: index.php');
-    }
+    }*/
 
     require_once "AuthAdmin.php";
     $error_message = '';
@@ -43,7 +48,7 @@
         <strong><?php echo $error_message; ?></strong>
     </div>
     <?php } ?>
-    <a href="userSignUp.HTML">Create New Account</a>
+    <a href="userSignUp.php">Create New Account</a>
     
 </body>
 </html>

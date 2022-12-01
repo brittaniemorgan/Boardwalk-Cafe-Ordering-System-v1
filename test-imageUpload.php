@@ -41,8 +41,6 @@ try {
     #unlink deletes image
 
 
-   
-
 } catch (Exception $e) {
     die($e->getMessage());
 

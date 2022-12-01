@@ -27,8 +27,9 @@
 
         function checkPassword($username, $password){
             foreach($this->logInInfo as $info){
-                if([$username,$password]==[$info["name"], $info["password"]]){
-                    return [$info["id"], $info["name"], ""];
+                $hashPass = hash("sha512", $password);
+                if (hash_equals($info['password'], $hashPass) && $username==$info["name"]){                
+                    return [$info["id"], $info["name"], []];
                 }
             }
             return false;
@@ -38,13 +39,18 @@
             $adminStmt = $this->db->getConn()->query("SELECT * FROM adminusers");
             $adminLog = $adminStmt->fetchAll();
             foreach($adminLog as $info){
-                echo "hello";
-                if([$username,$password]==[$info["name"], $info["password"]]){
-                    echo "hello";
+                if([$username,$password]==[$info["name"], $info["password"]]){      //use hash
+                    echo "hello";       
                     return [$info["id"], $info["name"], $info["role"]];
                 }             
             }
             return false;
+        }
+
+        function registerNewUser($name, $password){
+            echo "hello";
+            $this->db->addUser($name, $password);
+            //return [$info["id"], $info["name"], []];
         }
     }
 
