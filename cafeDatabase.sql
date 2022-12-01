@@ -49,17 +49,22 @@ INSERT INTO `menuItems` VALUES (1, 'Chicken','Sandwiches', 'MED', '', 510, 0, "c
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
+    `id` int(10) NOT NULL AUTO_INCREMENT,
     `name` varchar(50) NOT NULL default '',
     `password` varchar(300)  NOT NULL default '',
     `reward points` int(11) NOT NULL default 0,
-    PRIMARY KEY (`name`)
+    `phoneNum` int(10) NOT NULL default 0,
+    PRIMARY KEY (`id`)
 
 )ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `users` VALUES(1, "John", "123", 20,876945123),
+(2, "Mary", "abc45", 50, 8764582317066);
 
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
-    `id` int(11) NOT NULL AUTO_INCREMENT ,
+    `id` int(11) NOT NULL AUTO_INCREMENT,
     `total` int(11) NOT NULL default 0,
     `items` varchar(300)  NOT NULL default '',
     `status` char(4) NOT NULL default 'OPEN',
