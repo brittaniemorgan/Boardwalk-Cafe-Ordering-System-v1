@@ -168,6 +168,21 @@ class Manager{
         }
     }
 
+    function outOfStock(){
+        $id = $_POST['menu-for-out'];
+
+        $stmt =$this->conn->prepare("UPDATE `menuItems` SET `in_stock` = 'NO' WHERE `id` = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        if($stmt->execute()){
+            echo '<script>alert("Item Put Out of Stock")</script>';
+            echo("<script>window.location = 'managerPage.php';</script>");
+        }else{
+            echo 'Unable to put item out of stock';
+        }
+
+    }
+
     function viewOrders(){
         $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN'");
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -195,4 +210,6 @@ if(isset($_POST['add-to-menu'])){
     $manager->deleteMenuItem();
 }elseif(isset($_POST['edit-menu'])){
     $manager->editMenuItem();
+}elseif(isset($_POST['out-from-menu'])){
+    $manager->outOfStock();
 }

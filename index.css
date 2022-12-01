@@ -135,6 +135,20 @@ h2{
 
 }
 
+.addToOrderButtonDisabled{
+    border: none;
+    -webkit-appearance: none;
+    border-radius: 5px;
+
+    background-color: rgb(255, 255, 255);
+    margin: 15vh 10vw 15vh 0;
+
+    transition: 0.2s;
+    transform: scale(1.6);
+    color: rgb(197, 52, 52);
+
+}
+
 .addToOrderButton:hover{
     cursor: pointer;
     transition: 0.3s;

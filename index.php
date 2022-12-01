@@ -63,7 +63,9 @@
                     <?php
                         #iterates through each row of the data base
                         for ($x = 0; $x < count($results); $x++){ 
-                            if(1===2){
+
+                            #checks if item is out of stock, if it is its button is disabled and it has an out of stock message
+                            if($results[$x]['in_stock'] === 'NO'){
                                 #prints item category when item is the first one in the category       
                                 if($x > 0 and $results[$x-1]['category'] != $results[$x]['category']){?>
                                     <h3 class="category-heading"><?=$results[$x]['category']?></h3>
@@ -72,12 +74,12 @@
                                 <?php } ?>
                                         
                                 
-                                <button class="addToOrderButton" onclick="alert('naurr');">
+                                <button class="addToOrderButtonDisabled" disabled>
                                     <div class="menuItem">
                                         <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">
                             
                                         <div class="menuItemContent">
-                                            
+                                            <h5>OUT OF STOCK</h5>
                                             <h5><?=$results[$x]['name']?></h5>
                                             <div class="prices">
                                                 <?php 

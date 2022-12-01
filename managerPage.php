@@ -150,6 +150,21 @@
             <input type="submit" name="del-from-menu" value="Delete Item"></input>
         </form>
 
+        
+        <!--Mark as out of stock-->
+        <h4>Mark Item Out of Stock</h4>
+        <form action="Manager.php" method="post"id="out-stock-form">
+            <select name="menu-for-out" id="menu-for-out">
+                <?php
+                    $results = $db->menuInfo();
+                    foreach($results as $row): ?>
+                        <option value="<?=$row['id']?>"><?=$row['name'].", ".$row['category'] ?></option>
+                
+                <?php endforeach ?>
+            </select>
+            <input type="submit" name="out-from-menu" value="Enter"></input>
+        </form>
+
         <a href="#" class="toplink">
             <button class="linkButton"><img src="images/toparrow.png">Back to top</button>
         </a>

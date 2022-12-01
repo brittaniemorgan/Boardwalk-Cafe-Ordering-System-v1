@@ -69,6 +69,16 @@ h2{
     margin-bottom: 30px;
 }
 
+#out-stock-form{
+
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: #2ecb91;
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
 
 form h5{
     font-size: 20px;
