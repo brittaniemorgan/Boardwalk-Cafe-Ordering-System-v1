@@ -39,7 +39,7 @@ body {
     justify-content: space-between;
    }
 
-.button-checkout {
+#button-checkout {
     background-color: #7ec4cf;
     cursor: pointer;
     font-size: 17px;

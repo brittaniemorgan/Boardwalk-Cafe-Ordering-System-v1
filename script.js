@@ -83,5 +83,7 @@ window.onload = function(){
     for (var i = 0; i < readyButtons.length ; i++){
         readyButtons[i].addEventListener("click", updateOrderPreparing);
     }
+
+    var addToCartBtn = document.querySelector
     
 }

@@ -207,7 +207,8 @@ class DBManager{
         $stmt->bindParam(':start_time', $start_time, PDO::PARAM_STR);
 
         if($stmt->execute()){
-            echo 'order placed';
+            echo     "<h1>Your Order Has Been Placed</h1>
+            <p>Thank you for ordering with us, we'll contact you by email with your order details.</p>";
         }else{
             echo 'error, couldnt place order';
         }
@@ -234,18 +235,18 @@ class DBManager{
 
         ?>
         <div>
-            <h2><?= $results[0]["name"]?></h2>
-            <form id="" action="viewCart.php" method="POST">
-                <textarea name="foodID" style="display: none;"><?=$foodID?></textarea>
+            <h2 id="foodName"><?= $results[0]["name"]?></h2>
+            <form id="" action="viewCart.php" method="post">
+                <textarea name="foodID"  style="display: none;"><?=$foodID?></textarea>
                 <?php 
                     if ($results[0]["large_size"] != null):
                 ?>
                     <p>Please select a meal size</p>
-                    <input type="radio" name="mealSize" value="Medium" required> Medium - $<?=$results[0]["price"]?></input>
-                    <input type="radio" name="mealSize" value="Large"> Large - $<?=$results[0]["large_price"]?></input>
+                    <input type="radio" name="mealSize" value="Medium" id="<?=$results[0]["price"]?>" required> Medium - $<?=$results[0]["price"]?></input>
+                    <input type="radio" name="mealSize" value="Large" id="<?=$results[0]["large_price"]?>"> Large - $<?=$results[0]["large_price"]?></input>
 
                 <?php else:?>
-                    <p> Price $<?=$results[0]["price"]?></p>
+                    <p name="regPrice" id="<?=$results[0]["price"]?>"> Price $<?=$results[0]["price"]?></p>
                 <?php endif; 
                     if ($results[0]["category"] == "breakfast"):
                 ?>
@@ -254,10 +255,12 @@ class DBManager{
                     <input type="radio" name="side" value="hash-browns">Hash Browns</input> 
                     <input type="radio" name="side" value="bagels">Bagels</input>
                     <input type="radio" name="side" value="french-toast">French Toast</input>   
-                <?php endif?>            
+                <?php endif?>  
+                <label for="quantity">Quantity: </label>
+                <input type="number" min="1" max="10" name="quantity" placeholder="Quantity"></input>          
                 <label for="comments">Comments:</label>
                 <textarea name="comments"></textarea>
-                <button type="submit" id="add-to-cart-btn">Add to Cart</button>
+                <button type = "submit" name = "add-to-cart-btn">Add to Cart</button>
             </form>
 
         </div>
