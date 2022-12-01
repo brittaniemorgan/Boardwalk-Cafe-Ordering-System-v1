@@ -44,6 +44,18 @@ window.onload = function(){
             request.open("GET", "http://localhost/comp2140-project.v2/comp2140-project/Server.php");
             request.send();  
         }
+
+        getDeliveryAddress(){
+            let request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+            if (request.readyState === XMLHttpRequest.DONE){
+                if (request.status === 200){
+                    document.querySelector("#deliveryAddress-display").innerHTML = request.responseText;
+                }}
+            }
+            request.open("GET", "http://localhost/comp2140-project.v2/comp2140-project/deliveryPersonnel.php");
+            request.send();  
+        }
     }
     var reqManager = new RequestManager();
 
