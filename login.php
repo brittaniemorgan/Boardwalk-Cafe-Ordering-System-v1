@@ -48,7 +48,7 @@
         <strong><?php echo $error_message; ?></strong>
     </div>
     <?php } ?>
-    <a href="userSignUp.HTML">Create New Account</a>
+    <a href="userSignUp.php">Create New Account</a>
     
 </body>
 </html>

@@ -187,7 +187,7 @@ class DBManager{
         }
 
         #select last order - might need
-        #$stmt = $this->conn->prepare("SELECT * FROM orders ORDER BY :id DESC LIMIT 1");
+        #$stmt = $this->conn->prepare("SELECT id FROM orders ORDER BY :id DESC LIMIT 1");
     }
 
     

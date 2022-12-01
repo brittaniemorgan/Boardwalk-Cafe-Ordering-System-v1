@@ -1,3 +1,3 @@
 # comp2140-boardwalk
 
-i plan to change the layout of the Main Menu i just wanted to see things on the page, i also had to put some placeholder things in the database.
+I you test the delete add back the image of the deleted item to the images folder cause its gonna delete it for real.

@@ -16,12 +16,17 @@ window.onload = function(){
             
         }
 
-        sendUpdate(url,orderId){
+        sendUpdate(url,orderId,action){
             let request = new XMLHttpRequest();
             request.onreadystatechange = function(){
             if (request.readyState === XMLHttpRequest.DONE){
                 if (request.status === 200){
-                    document.querySelector("#orderDiv"+orderId).style.display="none";
+                    if (action=="ready"){
+                        document.querySelector("#orderDiv"+orderId).style.display="none";
+                    }
+                    if (action=="prep"){
+                        document.querySelector("#order-status-"+orderId).innerHTML = "Status: PREP";
+                    }
                 }}
             }
             request.open("GET", url);
@@ -29,7 +34,7 @@ window.onload = function(){
         }
 
         getFoodDetails(foodID){
-            var url = "http://localhost/comp2140-project.v2/comp2140-project/foodDescription.php?foodID=" + foodID;
+            var url = "http://localhost/comp2140-project/foodDescription.php?foodID=" + foodID;
             this.sendData(url);
         }
 
@@ -41,7 +46,7 @@ window.onload = function(){
                     document.querySelector("#orders-display").innerHTML = request.responseText;
                 }}
             }
-            request.open("GET", "http://localhost/comp2140-project.v2/comp2140-project/Server.php");
+            request.open("GET", "http://localhost/comp2140-project/Server.php");
             request.send();  
         }
 
@@ -53,7 +58,7 @@ window.onload = function(){
                     document.querySelector("#deliveryAddress-display").innerHTML = request.responseText;
                 }}
             }
-            request.open("GET", "http://localhost/comp2140-project.v2/comp2140-project/deliveryPersonnel.php");
+            request.open("GET", "http://localhost/comp2140-project/deliveryPersonnel.php");
             request.send();  
         }
     }
@@ -72,11 +77,18 @@ window.onload = function(){
         overlay.style.display = "none";
     }
 
-    function updateOrder(e){
+    function updateOrderReady(e){
         var btn = e.target;
         var orderId = btn.getAttribute("id");
         console.log(orderId);
-        reqManager.sendUpdate("http://localhost/comp2140-project.v2/comp2140-project/Server.php?orderId=" + orderId, orderId);
+        reqManager.sendUpdate("http://localhost/comp2140-project/Server.php?action=updateReady&orderId=" + orderId, orderId,"ready");
+    }
+
+    function updateOrderPreparing(e){
+        var btn = e.target;
+        var orderId = btn.getAttribute("id");
+        console.log(orderId);
+        reqManager.sendUpdate("http://localhost/comp2140-project/Server.php?action=updatePrepare&orderId=" + orderId, orderId,"prep");
     }
 
     var foodButtons = document.getElementsByClassName("addToOrderButton");
@@ -88,12 +100,12 @@ window.onload = function(){
 
     var readyButtons = document.getElementsByClassName("mark-ready");
     for (var i = 0; i < readyButtons.length ; i++){
-        readyButtons[i].addEventListener("click", updateOrder);
+        readyButtons[i].addEventListener("click", updateOrderReady);
     }
 
     var prepareButtons = document.getElementsByClassName("mark-preparing");
     for (var i = 0; i < readyButtons.length ; i++){
-        readyButtons[i].addEventListener("click", updateOrderPreparing);
+        prepareButtons[i].addEventListener("click", updateOrderPreparing);
     }
 
     /* Open when someone clicks on the span element */
