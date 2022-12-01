@@ -122,7 +122,7 @@
             echo "Session variables are set.";
             ?> -->
 
-            <!-- <div class=" "> -->
+
             <h3>Delivery Location</h3>
             
             <?php foreach($delivery as $deliveryfor):?>
@@ -145,8 +145,11 @@
                     <p class="delID">Customer's Order #: <?=$deliveryfor["id"]?></p>
                     <p class="delPrice">Customer's Total: $<?=$deliveryfor["total"]?>.00</p>
                     <p class="order-statuses">Status: <?=$deliveryfor["status"]?></p>
-                    <button id="<?=$deliveryfor["id"]?>" class="delivered-order" onclick= "alert('Order has been delivered')">
-                    Mark as Delivered</button>
+                    <!-- <button id="<?=$deliveryfor["id"]?>" class="delivered-order" onclick= "alert('Order has been delivered')">
+                    Mark as Delivered</button> -->
+                    <a href="http://localhost/comp2140-project/newPage.html">
+                    <button id="<?=$deliveryfor["id"]?>" class="delivered-order">Mark as Delivered</button>
+                    </a>
                   <?php endforeach?>
                      
             </div> 
