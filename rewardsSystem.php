@@ -8,8 +8,55 @@ $dbname = 'cafeInfo';
 $db = new DBManager($host, $username, $password, $dbname);
 $conn = $db -> getConn();
 
+$username = $_SESSION['username'];
+
+$db->addPoint($username, $_POST['total']);
+
+function addPoint($username, $total){
+    if ($total >= 1000){
+        //INSERT INTO `users` ("reward points") VALUES (1) WHERE ;
+        //INSERT INTO `users` VALUES(1, "John", "123", 20, 876948523), (2, "Mary", "abc45", 50,876468503);
+
+        $stmt = $this->conn->prepare("UPDATE Customers SET reward points=1, WHERE name=`$username`");
+
+    }else{
+        $stmt = $this->conn->prepare("UPDATE Customers SET reward points=0, WHERE name=`$username`");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $items = "";
-class CartManager{}
+class RewardsManager{}
 $foodID = (int) $_POST["foodID"];
 $quantity = (int)$_POST['quantity'];
 $stmt = $conn->query("SELECT * FROM menuItems WHERE id = $foodID");
@@ -114,7 +161,7 @@ if (isset($_POST['checkout']) ) {
                 <h3 class="Cart">Your Cart</h3>
                 <h5 class="Remove">Remove All</h5>
             </div>
-            <form action="placeOrder.php" action="rewardsManager.php" method="post">
+            <form action="placeOrder.php" method="post">
                 <?php if (empty($products)): ?>
                     <p>You have no products added in your Shopping Cart</p>
                 <?php else:?>
@@ -173,7 +220,7 @@ if (isset($_POST['checkout']) ) {
                     <p><label for="address">Address:</label></p>
                     <textarea id="address" name="address" rows="3" cols="40">></textarea>
                     
-                    
+
 
                     <button type="submit" class="button-checkout">Checkout</button>
                 </div>
@@ -187,40 +234,3 @@ if (isset($_POST['checkout']) ) {
 </html>
 
 <?php
-/*
-///////////////////added
-foreach($items as $item): 
-    $total += $item[3] * $item[2];
-    $totalItems += 1 * $item[2];
-
-    $genLocation = $_GET["location"];
-    $address = $_GET["address"];
-
-    function addOrder($total, $items, $genLocation, $address){
-
-        $date = date('d/M/Y');
-        $start_time = date('h:i a');
-        
-
-        $stmt = $this->conn->prepare("INSERT INTO `orders` (`total`, `items`, `date`, `gen_del_location`, `address`, `start_time`) VALUES (:total, :items, :date, :genLocation, :address, :start_time)");
-        $stmt->bindParam(':total', $total, PDO::PARAM_INT);
-        $stmt->bindParam(':items', $items, PDO::PARAM_STR);
-        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
-        $stmt->bindParam(':genLocation', $genLocation, PDO::PARAM_STR);
-        $stmt->bindParam(':address', $address, PDO::PARAM_STR);
-        $stmt->bindParam(':start_time', $start_time, PDO::PARAM_STR);
-
-        if($stmt->execute()){
-            echo 'order placed';
-        }else{
-            echo 'error, couldnt place order';
-        }
-
-    }
-
-
-
-
-/////////////////////////////////////////
-*/
-?>
