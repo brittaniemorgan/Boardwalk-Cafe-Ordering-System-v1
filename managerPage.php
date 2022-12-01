@@ -49,34 +49,48 @@
 
     
 
-    <!--Shows business metrics in the form of a graph-->
+    <!--Add to menu-->
     <div id = "update-menu">
         <h2>Update Menu</h2>
+        <br><br>
+        <h4>Current Items</h4>
+        <div id="current-menu">
+            <?php
+                $results = $db->menuInfo();
+                foreach($results as $row): ?>
+                    <p id="small-menu"><?=$row['name'].", ".$row['category'] ?></p>
+            <?php endforeach ?>
+        </div>
 
         <h4>Add Menu Item</h4>
-        <form action="Manager.php" method="post" id="add-form">
+        <form action="Manager.php" method="post" id="add-form" enctype="multipart/form-data">
             <label for="name">Name:</label>
-            <input id="name" type="text" maxlength="50" required placeholder="Item Name">
+            <input id="name" name="name" type="text" maxlength="50" required placeholder="Item Name">
 
-            <label>Category:</label>
-            <input type="text" maxlength="35" required placeholder="Category">
+            <label for="category">Category:</label>
+            <input name="category" type="text" maxlength="35" required placeholder="Category">
 
             <h5>Sizes</h5>
             <label for="medium">Medium</label>
-            <input id="medium" type="checkbox" checked>
+            <input id="medium" name="medium" type="checkbox" checked required>
 
             <label for="large">Large</label>
-            <input id="large" type="checkbox">
+            <input id="large" name="large" type="checkbox">
 
             <label for="medium-price">Medium Price:</label>
-            <input id="medium-price" type="text" maxlength="5" required placeholder="1200">
+            <input name="medium-price" id="medium-price" type="number" maxlength="5" required placeholder="1200">
 
             <label for="large-price">Large Price:</label>
-            <input id="large-price" type="text" maxlength="5" placeholder="1600">
+            <input name="large-price" id="large-price" type="number" maxlength="5" placeholder="1600">
 
-             <input type="submit" name="add-menu" value="Add to Menu"></input>
+            <label for="menu-item-image">Upload Menu Image:</label>
+            <input name="menu-item-image" type="file">
+
+            <input type="submit" name="add-to-menu" value="Add to Menu"></input>
         </form>
 
+        
+        <!--Edit menu-->
         <h4>Edit Menu Item</h4>
         <form action="Manager.php" method="post" id="edit-form">
             <label for="name">Name:</label>
@@ -98,31 +112,22 @@
             <label for="large-price">Large Price:</label>
             <input id="large-price" type="text" maxlength="5" placeholder="1600">
 
-             <input type="submit" name="add-menu" value="Edit Item"></input>
+            <input type="submit" name="edit-menu" value="Edit Item"></input>
         </form>
 
+
+        <!--Delete from menu-->
         <h4>Delete Menu Item</h4>
         <form action="Manager.php" method="post"id="delete-form">
-            <label for="name">Name:</label>
-            <input id="name" type="text" maxlength="50" required placeholder="Item Name">
-
-            <label>Category:</label>
-            <input type="text" maxlength="35" required placeholder="Category">
-
-            <h5>Sizes</h5>
-            <label for="medium">Medium</label>
-            <input id="medium" type="checkbox" checked>
-
-            <label for="large">Large</label>
-            <input id="large" type="checkbox">
-
-            <label for="medium-price">Medium Price:</label>
-            <input id="medium-price" type="text" maxlength="5" required placeholder="1200">
-
-            <label for="large-price">Large Price:</label>
-            <input id="large-price" type="text" maxlength="5" placeholder="1600">
-
-             <input type="submit" name="add-menu" value="Delete Item"></input>
+            <select name="menu-for-del" id="menu-for-del">
+                <?php
+                    $results = $db->menuInfo();
+                    foreach($results as $row): ?>
+                        <option value="<?=$row['id']?>"><?=$row['name'].", ".$row['category'] ?></option>
+                
+                <?php endforeach ?>
+            </select>
+            <input type="submit" name="del-from-menu" value="Delete Item"></input>
         </form>
 
         <a href="#" class="toplink">

@@ -75,12 +75,12 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '26/Nov/2022', 'UWI', 'Sagicor ATM, Leslie Robinson Hall', '02:31 pm', '02:36 pm'),
 (2, 550, '1 MED', 'OPEN', 'NO', '26/Nov/2022', 'UWI', 'T5 Mighty Dragons, ELR Towers', '02:31 pm', '02:36 pm'),
-(3, 1890, '5 MED, 12 LRG', 'OPEN', 'NO', '30/Nov/2022', 'Papine', 'Tastee, Papine Square', '02:35 pm', '02:42 pm'),
-(4, 150, '4 MED', 'OPEN', 'NO', '30/Nov/2022', 'UWI', 'Taylor Block A', '08:01 am', '08:06 am'),
-(5, 1350, '12 LRG', 'OPEN', 'NO', '30/Nov/2022', 'Mona', 'Mona Road', '08:11 am', '08:14 am'),
-(6, 870, '1 MED', 'OPEN', 'NO', '30/Nov/2022', 'Hope Pastures', '67 During Drive', '08:45 am', '08:53 am'),
-(7, 700, '1 LRG', 'OPEN', 'NO', '30/Nov/2022', 'Old Hope Road', 'Bob Marley Museum', '10:02 am', '10:07 am'),
-(8, 950, '7 MED', 'OPEN', 'NO', '30/Nov/2022', 'Jamaica College', 'Jamaica College Front Gate', '12:31 pm', '12:36 pm'),
-(9, 1990, '16 MED, 20 LRG', 'OPEN', 'NO', '30/Nov/2022', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm'),
-(10, 570, '4 MED', 'OPEN', 'NO', '30/Nov/2022', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm');
+(3, 1890, '5 MED, 12 LRG', 'OPEN', 'NO', '1/Dec/2022', 'Papine', 'Tastee, Papine Square', '02:35 pm', '02:42 pm'),
+(4, 150, '4 MED', 'OPEN', 'NO', '1/Dec/2022', 'UWI', 'Taylor Block A', '08:01 am', '08:06 am'),
+(5, 1350, '12 LRG', 'OPEN', 'NO', '1/Dec/2022', 'Mona', 'Mona Road', '08:11 am', '08:14 am'),
+(6, 870, '1 MED', 'OPEN', 'NO', '1/Dec/2022', 'Hope Pastures', '67 During Drive', '08:45 am', '08:53 am'),
+(7, 700, '1 LRG', 'OPEN', 'NO', '1/Dec/2022', 'Old Hope Road', 'Bob Marley Museum', '10:02 am', '10:07 am'),
+(8, 950, '7 MED', 'OPEN', 'NO', '1/Dec/2022', 'Jamaica College', 'Jamaica College Front Gate', '12:31 pm', '12:36 pm'),
+(9, 1990, '16 MED, 20 LRG', 'OPEN', 'NO', '1/Dec/2022', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm'),
+(10, 570, '4 MED', 'OPEN', 'NO', '1/Dec/2022', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm');
     
