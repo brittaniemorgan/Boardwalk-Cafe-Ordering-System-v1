@@ -181,3 +181,12 @@ footer img:hover{
     transition: 0.3s;
     transform: scale(1.4);
 }
+
+#order-list{
+    background-color: rgb(255, 193, 24);
+    position: fixed;
+    right: 0;
+    top: 0;
+    border-radius: 5px;
+    width: 25%;
+}
