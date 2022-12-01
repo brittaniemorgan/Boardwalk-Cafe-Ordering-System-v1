@@ -21,14 +21,33 @@
             $this->logInInfo = $this->stmt->fetchAll();
         }
 
-        function getPasswords(){
+        function getLogInInfo(){
             return $this->logInInfo;
         }
 
         function checkPassword($username, $password){
+            foreach($this->logInInfo as $info){
+                if([$username,$password]==[$info["name"], $info["password"]]){
+                    return [$info["id"], $info["name"]];
+                }
+                else{
+                    return false;
+                }
+            }
+        }
 
+        function grantMenuAcess(){
+            if (isset($_POST["username"]) && $_POST["password"]){
+                if ($this->checkPassword($_POST["username"], $_POST["password"])){
+                    echo "Go ahead";
+                }
+
+                else{
+                    echo "Try again";
+                }
+            }
         }
     }
     $admin = new AuthAdmin();
-    echo $admin->getPasswords();
+    //$admin->grantMenuAcess();
 ?>

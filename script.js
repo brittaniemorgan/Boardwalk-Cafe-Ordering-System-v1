@@ -96,6 +96,6 @@ window.onload = function(){
         readyButtons[i].addEventListener("click", updateOrderPreparing);
     }
 
-    var addToCartBtn = document.querySelector
+    
     
 }
