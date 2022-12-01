@@ -61,7 +61,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` VALUES(1, "John", "123", 20,876948523),
 (2, "Mary", "abc45", 50,876468503);
 
-
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -75,21 +74,22 @@ CREATE TABLE `orders` (
     `start_time` varchar(10) NOT NULL default '',
     `end_time` varchar(10) NOT NULL default '',
     `cusId` int(11) NOT NULL default 0,
+    `deliveryPersonnel` varchar(100) NOT NULL default '',
     PRIMARY KEY (`id`)
 
 )ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '26/Nov/2022', 'UWI', 'Sagicor ATM, Leslie Robinson Hall', '02:31 pm', '02:36 pm',2),
-(2, 550, '1 MED', 'OPEN', 'NO', '26/Nov/2022', 'UWI', 'T5 Mighty Dragons, ELR Towers', '02:31 pm', '02:36 pm',1),
-(3, 1890, '5 MED, 12 LRG', 'OPEN', 'NO', '01/Dec/2022', 'Papine', 'Tastee, Papine Square', '02:35 pm', '02:42 pm',3),
-(4, 150, '4 MED', 'OPEN', 'NO', '01/Dec/2022', 'UWI', 'Taylor Block A', '08:01 am', '08:06 am',3),
-(5, 1350, '12 LRG', 'OPEN', 'NO', '01/Dec/2022', 'Mona', 'Mona Road', '08:11 am', '08:14 am',2),
-(6, 870, '1 MED', 'OPEN', 'NO', '01/Dec/2022', 'Hope Pastures', '67 During Drive', '08:45 am', '08:53 am',3),
-(7, 700, '1 LRG', 'OPEN', 'NO', '01/Dec/2022', 'Old Hope Road', 'Bob Marley Museum', '10:02 am', '10:07 am',1),
-(8, 950, '7 MED', 'OPEN', 'NO', '01/Dec/2022', 'Jamaica College', 'Jamaica College Front Gate', '12:31 pm', '12:36 pm',2),
-(9, 1990, '16 MED, 20 LRG', 'OPEN', 'NO', '01/Dec/2022', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm',3),
-(10, 570, '4 MED', 'OPEN', 'NO', '01/Dec/2022', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm',1);
-    
+INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '26/Nov/2022', 'UWI', 'Sagicor ATM, Leslie Robinson Hall', '02:31 pm', '02:36 pm', 3,'Chad Williams'),
+(2, 550, '1 MED', 'OPEN', 'NO', '26/Nov/2022', 'UWI', 'T5 Mighty Dragons, ELR Towers', '02:31 pm', '02:36 pm', 1,'Chad Williams'),
+(3, 1890, '5 MED, 12 LRG', 'OPEN', 'NO', '30/Nov/2022', 'Papine', 'Tastee, Papine Square', '02:35 pm', '02:42 pm', 2, 'Jason Campbell'),
+(4, 150, '4 MED', 'OPEN', 'NO', '30/Nov/2022', 'UWI', 'Taylor Block A', '08:01 am', '08:06 am', 2, 'Chad Williams'),
+(5, 1350, '12 LRG', 'OPEN', 'NO', '30/Nov/2022', 'Mona', 'Mona Road', '08:11 am', '08:14 am',4, 'Jason Campbell'),
+(6, 870, '1 MED', 'OPEN', 'NO', '30/Nov/2022', 'Hope Pastures', '67 During Drive', '08:45 am', '08:53 am', 1,'Jason Campbell'),
+(7, 700, '1 LRG', 'OPEN', 'NO', '30/Nov/2022', 'Old Hope Road', 'Bob Marley Museum', '10:02 am', '10:07 am', 2,'Jason Campbell'),
+(8, 950, '7 MED', 'OPEN', 'NO', '30/Nov/2022', 'Jamaica College', 'Jamaica College Front Gate', '12:31 pm', '12:36 pm', 3,'Jason Campbell'),
+(9, 1990, '16 MED, 20 LRG', 'OPEN', 'NO', '30/Nov/2022', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm', 1,'Chad Williams'),
+(10, 570, '4 MED', 'OPEN', 'NO', '30/Nov/2022', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 6, 'Chad Williams');
+   
 DROP TABLE IF EXISTS `adminUsers`;
 CREATE TABLE `adminUsers` (
     `id` int(10) NOT NULL AUTO_INCREMENT,

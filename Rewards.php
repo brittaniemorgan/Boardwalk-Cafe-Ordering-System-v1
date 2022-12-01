@@ -1,7 +1,7 @@
 <?php
 
 
-session_start();
+#session_start();
 
 
 // #connects to databse
@@ -26,16 +26,16 @@ class Rewards{
     }
 
     function retrieveRewardsData(){
-        $user = $_SESSION['username'];
+        $user = $_SESSION['user'];
         $info = $this->db->userInfo($user);
         $points = $info['reward points'];
-        
+    
 
         return $points;
     }
 
     function applyPoints(){
-        $user = $_SESSION['username'];
+        $user = $_SESSION['user'];
         $info = $this->db->userInfo($user);
         $points = $info['reward points'];
         

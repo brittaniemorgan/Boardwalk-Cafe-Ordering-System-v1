@@ -10,10 +10,11 @@
         }*/
         function updateOrder($orderId, $action){
             if($action == "updateReady"){
-                $date = date("H:i");
-                $stmt = $this->conn->prepare("UPDATE `orders` SET `status` = 'CLSD' WHERE `id` = :orderId");
+                $time = date("h:i a");
+                $stmt = $this->conn->prepare("UPDATE `orders` SET `status` = 'CLSD', `end_time` = :time WHERE `id` = :orderId");
                 //UPDATE `orders` SET `status` = 'CLSD', `end_time` = "90" WHERE `id` = 4;
                 $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+                $stmt->bindParam(':time', $time, PDO::PARAM_STR);
             
                 if($stmt->execute()){
                         echo 'status updated';

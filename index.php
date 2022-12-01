@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $_SESSION['username'] = "brie";
+    #$_SESSION['username'] = "brie";
 
 ?>
 <!DOCTYPE html>
@@ -66,14 +66,6 @@
                 
 
                 <?php
-                    session_start();
-                    function logOff(){
-                        if (isset($_SESSION['user'])) {
-                            unset($_SESSION['user']);//fix
-                            header('Location: index.php');
-                        }
-                    }
-                    $_SESSION["user"] = ["temp","temp",[]];
                     require_once 'DBManager.php';
                     require_once 'Rewards.php';
                     
@@ -93,8 +85,7 @@
                     
                     #goes through each menu item and prints its data
                     $results = $db->menuInfo();?>
-                    <!--?><div>
-        
+                    
                     <div>
             
                     <?php
@@ -111,13 +102,13 @@
                                 <?php } ?>
                                         
                                 
-                                <button class="addToOrderButtonDisabled" disabled>
+                                <button class="addToOrderButtonDisabled"  id="<?=$results[$x]["id"]?>"disabled>
                                     <div class="menuItem">
                                         <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">
                             
-                                        <div class="menuItemContent">
+                                        <div class="menuItemContent"  id="<?=$results[$x]["id"]?>">
                                             <h5>OUT OF STOCK</h5>
-                                            <h5><?=$results[$x]['name']?></h5>
+                                            <h5 itemid="<?=$results[$x]["id"]?>"><?=$results[$x]['name']?></h5>
                                             <div class="prices">
                                                 <?php 
                                                     #checks if the item comes in a large size and prints the large size value
@@ -148,11 +139,11 @@
                             <?php } ?>
                                     
                            
-                            <button class="addToOrderButton" onclick="alert('no');">
-                                <div class="menuItem">
-                                    <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">
+                            <button class="addToOrderButton" id="<?=$results[$x]["id"]?>">
+                                <div class="menuItem" id="<?=$results[$x]["id"]?>">
+                                    <img src=<?="images/".$results[$x]['image']?> class="menuItemPic" itemid="<?=$results[$x]["id"]?>">
                         
-                                    <div class="menuItemContent">
+                                    <div class="menuItemContent" id="<?=$results[$x]["id"]?>" itemid="<?=$results[$x]["id"]?>">
                                         
                                         <h5><?=$results[$x]['name']?></h5>
                                         <div class="prices">
@@ -182,12 +173,12 @@
         
             </div>
         </section>
-
+<!--
         <aside id="points">
             <?php
                 echo $rewards->retrieveRewardsData()." points";
             ?>
-        </aside>
+        </aside>-->
         
         <footer>
             <div>
@@ -206,10 +197,10 @@
         </footer>
 
         <?php
-            $date = date('d/M/Y');
+           /* $date = date('d/M/Y');
             if($date == "31/Dec/2022"){
                 $rewards->expirePoints();
-            }
+            }*/
 
             #$rewards->applyPoints();
         ?>
