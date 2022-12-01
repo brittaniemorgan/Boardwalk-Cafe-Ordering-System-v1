@@ -135,7 +135,37 @@ class Manager{
     }
 
     function editMenuItem(){
+        #get the id of item to be edited
+        $id = $_POST['menu-for-edit'];
+        $name = $_POST['name'];
+        $category = $_POST['category'];
+        $price = $_POST['medium-price'];
 
+        if(isset($_POST['large']) and $_POST['large-price'] === ""){
+            $lrg = "";
+            $lrg_price = 0;
+        }elseif(isset($_POST['large'])){
+            $lrg = "LRG";
+            $lrg_price = intval($_POST['large-price']);
+        }else{
+            $lrg = "";
+            $lrg_price = 0;
+        }
+        
+        $stmt =$this->conn->prepare("UPDATE `menuItems` SET `name` = :name, `category` = :category, `price` = :price, `large_price` = :lrg_price, `large_size` = :lrg_size  WHERE `id` = :id");
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':category', $category, PDO::PARAM_STR);
+        $stmt->bindParam(':lrg_size', $lrg, PDO::PARAM_STR);
+        $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+        $stmt->bindParam(':lrg_price', $lrg_price, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        if($stmt->execute()){
+            echo '<script>alert("Item Updated")</script>';
+            echo("<script>window.location = 'managerPage.php';</script>");
+        }else{
+            echo 'Couldnt update item';
+        }
     }
 
     function viewOrders(){

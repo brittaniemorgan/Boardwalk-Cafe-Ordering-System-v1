@@ -113,15 +113,20 @@ class Metrics{
         $results = $this->retrieveDB();?>
 
             <h5>There were <?=$results['orders_today']?> orders placed today. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
-            <p>Orders placed from UWI - <?=$results['uwi_num']?></p>
-            <p>Orders placed from Mona - <?=$results['mona_num']?></p>
-            <p>Orders placed from Hope Pastures - <?=$results['hope_past_num']?></p>
-            <p>Orders placed from Papine - <?=$results['papine_num']?></p>
-            <p>Orders placed from Old Hope Road - <?=$results['old_hope_num']?></p>
-            <p>Orders placed from Jamaica College - <?=$results['jc_num']?></p>
 
+            <div id="orderRes">
+                <p>Orders placed from UWI - <?=$results['uwi_num']?></p>
+                <p>Orders placed from Mona - <?=$results['mona_num']?></p>
+                <p>Orders placed from Hope Pastures - <?=$results['hope_past_num']?></p>
+                <p>Orders placed from Papine - <?=$results['papine_num']?></p>
+                <p>Orders placed from Old Hope Road - <?=$results['old_hope_num']?></p>
+                <p>Orders placed from Jamaica College - <?=$results['jc_num']?></p>
+
+            </div>
             <!--Canvas to place pie chart on-->
             <canvas id="numChart" style="width:100%;max-width:700px"></canvas>
+
+            <div id="earnRes">
 
             <p>Earnings from UWI - $<?=$results['uwi_earn']?></p>
             <p>Earnings from Mona - $<?=$results['mona_earn']?></p>
@@ -129,6 +134,8 @@ class Metrics{
             <p>Earnings from Papine - $<?=$results['papine_earn']?></p>
             <p>Earnings from Old Hope Road - $<?=$results['old_hope_earn']?></p>
             <p>Earnings from Jamaica College - $<?=$results['jc_earn']?></p>
+
+            </div>
             
             <!--Canvas to place bar chart on-->
             <canvas id="earnChart" style="width:100%;max-width:700px"></canvas>

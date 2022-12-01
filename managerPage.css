@@ -122,3 +122,30 @@ input[type = submit]{
     background-color: #fff;
     color: #000;
 }
+
+canvas{
+    border-radius: 5px;
+    background-color: rgb(255, 252, 238);
+}
+
+#orderRes{
+    font-size: 14px;
+    color: rgb(118, 118, 118);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+
+#earnRes{
+    font-size: 14px;
+    color: rgb(118, 118, 118);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+h5{
+    font-size: 20px;
+}

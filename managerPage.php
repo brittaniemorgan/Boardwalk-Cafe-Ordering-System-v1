@@ -105,8 +105,8 @@
         <h4>Edit Menu Item</h4>
         
         <form action="Manager.php" method="post" id="edit-form">
-            
-            <select name="menu-for-del" id="menu-for-del">
+            <label>Blank Fields Wont Be Updated<br><br></label>
+            <select name="menu-for-edit" id="menu-for-edit">
                 <?php
                     $results = $db->menuInfo();
                     foreach($results as $row): ?>
@@ -114,23 +114,24 @@
                 <?php endforeach ?>
             </select>
             
+
             <label for="name">Name:</label>
-            <input id="name" type="text" maxlength="50" required placeholder="Item Name">
+            <input id="name" name="name" type="text" maxlength="50" required placeholder="Item Name">
 
-            <label>Category:</label>
-            <input type="text" maxlength="35" required placeholder="Category">
+            <label for="category">Category:</label>
+            <input name="category" type="text" maxlength="35" required placeholder="Category">
+            <br><br>
 
-            <h5>Sizes</h5>
-            
             <label for="large">Large</label>
-            <input id="large" type="checkbox">
+            <input id="large" name="large" type="checkbox">
 
             <label for="medium-price">Medium Price:</label>
-            <input id="medium-price" type="text" maxlength="5" required placeholder="1200">
+            <input name="medium-price" id="medium-price" type="number" required maxlength="5" placeholder="1200">
 
             <label for="large-price">Large Price:</label>
-            <input id="large-price" type="text" maxlength="5" placeholder="1600">
+            <input name="large-price" id="large-price" type="number" maxlength="5" placeholder="1600">
 
+            
             <input type="submit" name="edit-menu" value="Edit Item"></input>
         </form>
 
