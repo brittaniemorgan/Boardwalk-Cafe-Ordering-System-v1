@@ -1,3 +1,33 @@
+<?php
+    session_start();
+    if (isset($_SESSION['deliveryPersonnel'])) {
+        unset($_SESSION['deliveryPersonnel']);
+        header('Location: index.php');
+    }
+
+    require_once "AuthAdmin.php";
+    $error_message = '';
+    if (isset($_POST['submit'])) {
+        $auth = new AuthAdmin();
+        $response = $auth->verifyAdmin($_POST['username'], $_POST['password']);
+        $error_message = '';
+        if (!$response) {
+            $error_message = "Incorrect username or password";
+        }
+        else{
+            $_SESSION['admin'] = $response;
+            switch($_SESSION['admin'][2]){
+                case 'delivery personnel':
+                    header('Location: deliveryPersonnel.php'); 
+                    break;
+            }            
+        }
+     
+        
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +35,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Personnel - The Boardwalk Cafe</title>
+    <link rel="stylesheet" href="deliveryPersonnel.css">
     <script src="script.js"></script>
 </head>
 <body>
@@ -68,38 +99,60 @@
           // }
 
 
-          public function viewOrders(){
-            $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN'");
-            $orders = $stmt->fetchAll();
+          public function viewOrders(){          
+            // $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN'");
+            // $orders = $stmt->fetchAll();
+
             $stmts = $this->conn->query("SELECT * FROM `orders` WHERE `delivered` = 'NO'");
             $delivery = $stmts->fetchAll();
+
+            $del = $this->conn->query("SELECT * FROM orders WHERE `delivered` = 'NO' AND 
+            `deliveryPersonnel` = 'Chad Williams'");
+            $delUWI = $del->fetchAll();
+
+            $del = $this->conn->query("SELECT * FROM orders WHERE `delivered` = 'NO' AND 
+            `deliveryPersonnel` = 'Jason Campbell'");
+            $delOut = $del->fetchAll();
            ?>
 
+            <!-- <?php
+            // Set session variables
+            $_SESSION["favcolor"] = "green";
+            $_SESSION["favanimal"] = "cat";
+            echo "Session variables are set.";
+            ?> -->
+
+            <!-- <div class=" "> -->
             <h3>Delivery Location</h3>
             
             <?php foreach($delivery as $deliveryfor):?>
+
+            <div class="ok">
               
-              <div id="DeliveryDiv<?=$deliveryfor["id"]?>">
-                  <h4>Customer's Address <?=$deliveryfor["address"]?></h4>
-                  <ul><?php
-                      $deliveryLocate = explode(",",$deliveryfor["address"]);
-                      foreach($deliveryLocate as $addresses):
-                        // $delID = (int) substr($addresses,0,2);
-                        $delLocation = $this->conn->query("SELECT * FROM orders WHERE delivered = 'NO'");
-                        $delResult = $delLocation->fetchAll();
-                        $delSpecificLocate = $delResult[0]["gen_del_location"];
-                        $delGeneralLocate = $delResult[0]["address"];
-                      ?>
+              <div class="DeliveryDiv<?=$deliveryfor["id"]?>">
 
-                <p class="delAddress">Customer's Address: <?=$delSpecificLocate?></p>
-                <p class="delAddress">Customer's General Location: <?=$delGeneralLocate?></p> 
-              </div> 
-            <?php endforeach?>
-            <?php endforeach?>
+                  <?php
+                  // Set session variables
+                  $personUWI = $_SESSION["Chad Williams"];
+                  $personOutside = $_SESSION["Jason Campbell"];
+                  
+                  echo "Session variables are set.";
+                  ?>
 
-
-                <!-- <p class="delAddress">Customer's Address: <?=$deliveryfor["address"]?></p>  -->
-              <!-- <button id="<?=$order["id"]?>" class="cust-address">See Customer's Address</button> -->
+                  <h4>Customer's Address</h4>
+                  <p>Address Line 1: <?=$deliveryfor["address"]?></p>
+                    <p class="delAddress">Address Line 2: <?=$deliveryfor["gen_del_location"]?></p>
+                    <p class="delID">Customer's Order #: <?=$deliveryfor["id"]?></p>
+                    <p class="delPrice">Customer's Total: $<?=$deliveryfor["total"]?>.00</p>
+                    <p class="order-statuses">Status: <?=$deliveryfor["status"]?></p>
+                    <button id="<?=$deliveryfor["id"]?>" class="delivered-order" onclick= "alert('Order has been delivered')">
+                    Mark as Delivered</button>
+                  <?php endforeach?>
+                     
+            </div> 
+            </div> 
+            
+            
                 
         <?php }
     }

@@ -91,6 +91,13 @@ window.onload = function(){
         readyButtons[i].addEventListener("click", updateOrder);
     }
 
+    let deliveredButtons = document.getElementsByClassName("delivered-order");
+    for (let i = 0; i < deliveredButtons.length; i++) {
+        deliveredButtons[i].addEventListener("click", updateOrder);
+        // alert("Order has been delivered")
+        
+    }
+
     var prepareButtons = document.getElementsByClassName("mark-preparing");
     for (var i = 0; i < readyButtons.length ; i++){
         readyButtons[i].addEventListener("click", updateOrderPreparing);

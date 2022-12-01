@@ -26,7 +26,7 @@ class OrderProcessor {
 
     assignDeliveries(order){
         //add the order to the dictionary of deliveries
-        delivdict = {}; //dict of delivery pesonell
+        delivdict = {}; //dict of delivery personnel
         for (i of delivdict){
             if (delivdict[i] = ""){
                 delivdict[i] = order;
