@@ -12,7 +12,6 @@
 
       require 'Employee.php';
       require_once 'DBManager.php';
-      echo "helo";
         class DeliveryPersonnel extends Employee {  
             // var $status;  
             // var $view;  
@@ -53,7 +52,14 @@
           }
 
 
+          // function viewOrdersold() {
+          //     $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN'");
+          //     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+          //     foreach($results as $row){
+          //         echo " ".$row['items']." ".$row['address']." ".$row['total'];
+          //     }
+          // }
 
 
           public function viewOrders(){
