@@ -1,8 +1,8 @@
 export class MenuIitem {
 
-    constructor(name, category, price) {  // Constructor
+    constructor(name, price, size) {  // Constructor
         this.itemName = name;
-        this.category = category;
+        this.size = size;
         this.price = price;
  
     }
@@ -11,8 +11,8 @@ export class MenuIitem {
         return this.itemName;
     }
 
-    getCategory(){
-        return this.category;
+    getSize(){
+        return this.size;
     }
 
     getPrice(){
