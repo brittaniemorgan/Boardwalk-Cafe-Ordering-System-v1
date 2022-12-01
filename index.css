@@ -91,10 +91,7 @@ h2{
     padding: 0% 10%;
 }
 
-#menu-items-wrapper{
-    display: flex;
-    flex-wrap: wrap;
-}
+
 
 .menuItem{
     width: 130px;
@@ -155,8 +152,15 @@ h2{
     transform: scale(1.8);
 }
 
-#order-list{
-    background-color: rgb(213, 241, 118);
+.cart-button{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 193, 24);
+}
+
+.cart-button:hover{
+    cursor: pointer;
+    
 }
 
 footer{
@@ -180,6 +184,24 @@ footer img{
 footer img:hover{
     transition: 0.3s;
     transform: scale(1.4);
+}
+
+aside{
+    background-color: rgb(255, 193, 24);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px;
+    width: 25%;
+}
+
+.category-heading{
+    display: block;
+}
+
+#menu{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #overLay{

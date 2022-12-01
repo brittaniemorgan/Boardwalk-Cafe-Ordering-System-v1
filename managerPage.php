@@ -27,6 +27,7 @@
         $dbname = 'cafeInfo';
         
         $db = new DBManager($host, $username, $password, $dbname);
+        $manager = new Manager($db);  
     ?>
 
     <div id="hero"> 
@@ -43,18 +44,7 @@
         </a>
     </div>
 
-    <!--View and manage orders-->
-    <div id = "view-manage-orders">
-        <h2>Manage Orders</h2>
-        <?php
-            $manager = new Manager($db);  
-            $manager->viewOrders();  
-        ?>
-    </div>
-
-    
-
-    
+        
     <div id = "update-menu">
         <h2>Update Menu</h2>
         
@@ -105,7 +95,7 @@
         <h4>Edit Menu Item</h4>
         
         <form action="Manager.php" method="post" id="edit-form">
-            <label>Blank Fields Wont Be Updated<br><br></label>
+            
             <select name="menu-for-edit" id="menu-for-edit">
                 <?php
                     $results = $db->menuInfo();
@@ -163,6 +153,20 @@
                 <?php endforeach ?>
             </select>
             <input type="submit" name="out-from-menu" value="Enter"></input>
+        </form>
+        
+        <!--Mark as in stock-->
+        <h4>Mark Item In Stock</h4>
+        <form action="Manager.php" method="post"id="in-stock-form">
+            <select name="menu-for-in" id="menu-for-out">
+                <?php
+                    $results = $db->menuInfo();
+                    foreach($results as $row): ?>
+                        <option value="<?=$row['id']?>"><?=$row['name'].", ".$row['category'] ?></option>
+                
+                <?php endforeach ?>
+            </select>
+            <input type="submit" name="in-from-menu" value="Enter"></input>
         </form>
 
         <a href="#" class="toplink">
