@@ -61,7 +61,8 @@
                 
 
                 <?php
-                    #$_SESSION["user"] = "user123";
+                    session_start();
+                    $_SESSION["user"] = ["temp","temp",[]];
                     require_once 'DBManager.php';
                     
 
@@ -80,7 +81,7 @@
                     #goes through each menu item and prints its data
                     $results = $db->menuInfo();?>
                     <!--?><div>
-            
+        
         <?php
             #iterates through each row of the data base
             for ($x = 0; $x < count($results); $x++){ 
@@ -123,8 +124,9 @@
                         
                     <?php } ?>
         </div>-->
+                    <h2><?=$_SESSION["user"][1]?> logged in</h2>
                     <div>
-            
+                    
                     <?php
                         #iterates through each row of the data base
                         for ($x = 0; $x < count($results); $x++){ 

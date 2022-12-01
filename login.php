@@ -1,8 +1,13 @@
 <?php
     session_start();
+    if (isset($_SESSION['user'])) {
+        unset($_SESSION['user']);
+        //header('Location: index.php');
+    }
+    /*
     if (isset($_SESSION['user']) && $_SESSION['user'] != "temp") {
         header('Location: index.php');
-    }
+    }*/
 
     require_once "AuthAdmin.php";
     $error_message = '';
