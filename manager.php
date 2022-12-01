@@ -37,9 +37,10 @@ class Manager{
             $lrg = "";
             $lrg_price = 0;
         }
-
+        
+        
         #checks if an image was uploaded, uploades the image to the images folder and saves the path in the database.
-        if(array_key_exists('menu-item-image', $_FILES)){
+        if(array_key_exists('menu-item-image', $_FILES) and $_FILES['menu-item-image']['error'] != UPLOAD_ERR_NO_FILE){
 
             $allowedExtensions = ['png', 'jpg', 'jpeg'];
             $imgName = $_FILES['menu-item-image']['name'];
@@ -59,22 +60,18 @@ class Manager{
 
                 if($stmt->execute()){
                     move_uploaded_file($_FILES['menu-item-image']['tmp_name'], "images/$imgName");
-                    echo "<script>alert('sent to folder')</script>";
-                    header("location: managerPage.php");
+                    echo '<script>alert("Item added")</script>';
+                    echo("<script>window.location = 'managerPage.php';</script>");
 
                 }
                 
-                
-                #delete file from folder
-                #unlink("images/$imgName");
-                #echo "<script>alert('file deleted')</script>";
             }else{
                 echo "File should be a png, jpg or jpeg";
             }
         
         #if an image wasnt uploaded this will be done instead
         }else{
-            echo "File was too large to upload";
+            
             $stmt = $this->conn->prepare("INSERT INTO `menuItems` (`name`, `category`, `price`, `large_size`, `large_price`) VALUES (:name, :category, :price, :large_size, :large_price)");
             $stmt->bindParam(':name', $name, PDO::PARAM_STR);
             $stmt->bindParam(':category', $category, PDO::PARAM_STR);
@@ -84,8 +81,11 @@ class Manager{
             
             if($stmt->execute()){
 
-                #reload the page
-                header("location: managerPage.php");
+                #output message, reload the page
+                echo '<script>alert("Item added")</script>';
+                echo("<script>window.location = 'managerPage.php';</script>");
+                #header("location: managerPage.php");
+                
 
             }else{
                 echo 'An error has occurred';
@@ -98,13 +98,40 @@ class Manager{
         #get the id of item to be deleted
         $id = $_POST['menu-for-del'];
 
-        $stmt =$this->conn->prepare("DELETE FROM `menuItems` WHERE `id` = :id");
+        $stmt =$this->conn->prepare("SELECT `image` FROM `menuItems` WHERE `id` = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         if($stmt->execute()){
-            echo 'item deleted';
-        }else{
-            echo 'an error occurred';
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            #checks if the items image is the default image, ensures we dont delete default image
+            if($results[0]['image'] != "default-menu-image.jpg"){
+                $stmt =$this->conn->prepare("DELETE FROM `menuItems` WHERE `id` = :id");
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                if($stmt->execute()){
+
+                    #deletes item image from folder
+                    unlink("images/".$results[0]['image']);
+
+                    echo '<script>alert("Item Deleted")</script>';
+                    echo("<script>window.location = 'managerPage.php';</script>");
+                }else{
+                    echo 'an error occurred';
+                }
+            }else{
+                $stmt =$this->conn->prepare("DELETE FROM `menuItems` WHERE `id` = :id");
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                if($stmt->execute()){
+
+                    echo '<script>alert("Item Deleted")</script>';
+                    echo("<script>window.location = 'managerPage.php';</script>");
+                }else{
+                    echo 'an error occurred';
+                }
+                
+            }
+            
         }
+        
     }
 
     function editMenuItem(){
@@ -136,4 +163,6 @@ if(isset($_POST['add-to-menu'])){
     $manager->addMenuItem();
 }elseif(isset($_POST['del-from-menu'])){
     $manager->deleteMenuItem();
+}elseif(isset($_POST['edit-menu'])){
+    $manager->editMenuItem();
 }

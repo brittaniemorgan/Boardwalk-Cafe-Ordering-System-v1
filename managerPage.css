@@ -17,13 +17,26 @@ body{
     
 }
 
+#hero{
+    background-image: url("images/managerBack.jpg");
+    background-size: cover;
+    height: 200px;
+    margin: -25px;
+    padding: 20px;
+    color: #fff;
+}
+
+h2{
+    margin-top: 90px;
+}
+
 #nav-buttons{
     display: flex;
     
 }
 
 #nav-buttons a{
-    margin-left: 40px;
+    margin-right: 40px;
 }
 
 #add-form{
@@ -81,13 +94,31 @@ input[type = submit]{
 }
 
 #current-menu{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
     margin-bottom: 70px; 
+}
+
+#current-menu td{
+    display: inline-block;
+    margin-bottom: 10px; 
 }
 
 #small-menu{
     font-size: 12px;
     margin-right: 60px;
+    color: rgb(147, 147, 147);
+}
+
+.linkButton{
+    border-radius: 5px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+}
+
+.topButton{
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    color: #000;
 }

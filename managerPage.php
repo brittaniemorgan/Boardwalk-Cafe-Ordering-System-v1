@@ -11,6 +11,7 @@
 </head>
 <body>
     <?php
+        
         require_once 'DBManager.php';
         require_once 'Metrics.php';
         require_once 'Manager.php';
@@ -27,6 +28,10 @@
         
         $db = new DBManager($host, $username, $password, $dbname);
     ?>
+
+    <div id="hero"> 
+        <h1>Manager</h1>
+    </div>
 
     <div id="nav-buttons">
         <a href="#metrics" class="bottomlink">
@@ -49,19 +54,25 @@
 
     
 
-    <!--Add to menu-->
+    
     <div id = "update-menu">
         <h2>Update Menu</h2>
-        <br><br>
+        
+
+
         <h4>Current Items</h4>
-        <div id="current-menu">
+        <table id="current-menu">
+            <tr>
             <?php
                 $results = $db->menuInfo();
                 foreach($results as $row): ?>
-                    <p id="small-menu"><?=$row['name'].", ".$row['category'] ?></p>
-            <?php endforeach ?>
-        </div>
 
+                    <td id="small-menu"><?=$row['name'].", ".$row['category'] ?></td>
+            <?php endforeach ?>
+            </tr>
+        </table>
+        
+        <!--Add to menu-->
         <h4>Add Menu Item</h4>
         <form action="Manager.php" method="post" id="add-form" enctype="multipart/form-data">
             <label for="name">Name:</label>
@@ -92,7 +103,17 @@
         
         <!--Edit menu-->
         <h4>Edit Menu Item</h4>
+        
         <form action="Manager.php" method="post" id="edit-form">
+            
+            <select name="menu-for-del" id="menu-for-del">
+                <?php
+                    $results = $db->menuInfo();
+                    foreach($results as $row): ?>
+                        <option value="<?=$row['id']?>"><?=$row['name'].", ".$row['category'] ?></option>
+                <?php endforeach ?>
+            </select>
+            
             <label for="name">Name:</label>
             <input id="name" type="text" maxlength="50" required placeholder="Item Name">
 
@@ -100,9 +121,7 @@
             <input type="text" maxlength="35" required placeholder="Category">
 
             <h5>Sizes</h5>
-            <label for="medium">Medium</label>
-            <input id="medium" type="checkbox" checked>
-
+            
             <label for="large">Large</label>
             <input id="large" type="checkbox">
 
