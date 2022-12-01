@@ -1,6 +1,7 @@
 <?php
     session_start();
-    if (isset($_SESSION['user']) && $_SESSION['user'] != "temp") {
+    if (isset($_SESSION['admin'])) {
+        unset($_SESSION['admin']);
         header('Location: index.php');
     }
 
@@ -8,14 +9,26 @@
     $error_message = '';
     if (isset($_POST['submit'])) {
         $auth = new AuthAdmin();
-        $response = $auth->checkPassword($_POST['username'], $_POST['password']);
+        $response = $auth->verifyAdmin($_POST['username'], $_POST['password']);
         $error_message = '';
         if (!$response) {
             $error_message = "Incorrect username or password";
         }
         else{
-            $_SESSION['user'] = $response;
-            header('Location: index.php');  
+            $_SESSION['admin'] = $response;
+            switch($_SESSION['admin'][2]){
+                case 'manager':
+                    header('Location: manager.php'); 
+                    break;
+                case 'server':
+                    header('Location: Server.php'); 
+                    break;
+                case 'delivery personnel':
+                    header('Location: deliveryPersonnel.php'); 
+                    break;
+                case 'chef'://not sure 
+                    break;
+            }            
         }
      
         
@@ -31,7 +44,7 @@
     <title>Log In</title>
 </head>
 <body>
-    <form action="login.php" method="post">
+    <form action="adminLogin.php" method="post">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="username" required>
         <label for="password">Password</label>

@@ -28,26 +28,26 @@
         function checkPassword($username, $password){
             foreach($this->logInInfo as $info){
                 if([$username,$password]==[$info["name"], $info["password"]]){
-                    return [$info["id"], $info["name"]];
-                }
-                else{
-                    return false;
+                    return [$info["id"], $info["name"], ""];
                 }
             }
+            return false;
         }
 
-        function grantMenuAcess(){
-            if (isset($_POST["username"]) && $_POST["password"]){
-                if ($this->checkPassword($_POST["username"], $_POST["password"])){
-                    echo "Go ahead";
-                }
-
-                else{
-                    echo "Try again";
-                }
+        function verifyAdmin($username, $password){
+            $adminStmt = $this->db->getConn()->query("SELECT * FROM adminusers");
+            $adminLog = $adminStmt->fetchAll();
+            foreach($adminLog as $info){
+                echo "hello";
+                if([$username,$password]==[$info["name"], $info["password"]]){
+                    echo "hello";
+                    return [$info["id"], $info["name"], $info["role"]];
+                }             
             }
+            return false;
         }
     }
-    $admin = new AuthAdmin();
-    //$admin->grantMenuAcess();
+
+    //$admin = new AuthAdmin();
+    //$admin->verifyAdmin("hd",120);
 ?>

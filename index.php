@@ -18,20 +18,34 @@
         </div>
     </div>
 
-    <div id="wrapper">
         <header>
+            <span id="expandBtn" style="font-size:30px;cursor:pointer;color:white;" >&#9776;</span>
             <img src="images/boardWalkLogo.png" alt="boardwalk cafe's logo" id="boardwalkHeaderLogo">
     
             <br>
             <br>
             <h4 id="boardwalk-cafe">Boardwalk Caf&eacute;</h4>
+            <div id="wrapper">
+            <div id="myNav" class="overlay">
+
+                <!-- Button to close the overlay navigation -->
+                <a href="javascript:void(0)" id="close-menu-btn" >&times;</a>
+                
+                <!-- Overlay content -->
+                <div class="overlay-content">
+                <a href="index.php">Home</a>
+                <a href="#">Previous Orders</a>
+                <a href="#">Log Out</a>
+                <a href="#">Contact</a>
+                <a href="adminLogIn.php">Admin</a>
+                </div>
+
+            </div>
 
             <div id="contact-and-welcome">
                 <h5>876-977-6205</h2>  
                 <h1>WEL</h1><br><h1>COME!</h1>
-            </div>
-            
-            
+            </div>          
             
         </header>
 

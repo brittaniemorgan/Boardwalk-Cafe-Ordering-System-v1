@@ -58,8 +58,8 @@ CREATE TABLE `users` (
 
 )ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `users` VALUES(1, "John", "123", 20,876945123),
-(2, "Mary", "abc45", 50, 8764582317066);
+INSERT INTO `users` VALUES(1, "John", "123", 20,876948523),
+(2, "Mary", "abc45", 50,876468503);
 
 
 DROP TABLE IF EXISTS `orders`;
@@ -89,3 +89,17 @@ INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '26/Nov/20
 (9, 1990, '16 MED, 20 LRG', 'OPEN', 'NO', '30/Nov/2022', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm'),
 (10, 570, '4 MED', 'OPEN', 'NO', '30/Nov/2022', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm');
     
+DROP TABLE IF EXISTS `adminUsers`;
+CREATE TABLE `adminUsers` (
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `name` varchar(50) NOT NULL default '',
+    `password` varchar(300)  NOT NULL default '',
+    `role` varchar(50) NOT NULL default '',
+    PRIMARY KEY (`id`)
+
+)ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `adminUsers` VALUES(1, "Morell Parker", "123", "manager"),
+(2, "S.Morgan", "123", "chef"),
+(3, "D.Howard", "123", "delivery personnel"),
+(4, "R.Brown", "123", "server");
