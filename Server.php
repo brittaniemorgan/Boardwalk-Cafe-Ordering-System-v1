@@ -10,7 +10,9 @@
         }*/
         function updateOrder($orderId, $action){
             if($action == "updateReady"){
-                $stmt = $this->conn->prepare("UPDATE `orders` SET `status` = 'READY' WHERE `id` = :orderId");
+                $date = date("H:i");
+                $stmt = $this->conn->prepare("UPDATE `orders` SET `status` = 'CLSD' WHERE `id` = :orderId");
+                //UPDATE `orders` SET `status` = 'CLSD', `end_time` = "90" WHERE `id` = 4;
                 $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
             
                 if($stmt->execute()){
@@ -34,7 +36,7 @@
         }
 
         public function viewOrders(){
-            $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN' OR `status` = 'PREP'");
+            $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN' OR `status` = 'PREP' ORDER BY `start_time` ASC");
             $orders = $stmt->fetchAll();
            ?>
             <h2>Orders</h2>

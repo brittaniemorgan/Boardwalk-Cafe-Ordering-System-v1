@@ -10,6 +10,7 @@
     $cusId = $SESSION['user'][0];
 
     $db = new DBManager($host, $username, $password, $dbname);
+    
     $conn = $db->getConn(); 
     $stmt = $conn->query("SELECT * FROM orders WHERE cusId = $cusId ORDER BY date ASC");//dbManager?
     $orders = $stmt->fetchAll();
@@ -32,10 +33,14 @@
         <p>Total: <?=$order['total']?></p>
         <p>Status: <?=$order['status']?></p>
         <?php if($order['status'] == 'OPEN'):?>
-            <button class="cancel-order-btn" id="">Cancel</button>
+            <button class="cancel-order-btn" onclick="cancelOrder(<?=$order['id']?>)">Cancel</button>
         <?php endif?>
     </div>
-    <?php endforeach?>
+<?php endforeach;
+    function cancelOrder($db,$orderID){
+        $db->deleteOrder($orderID);
+    }
+?>
 
                 
         
