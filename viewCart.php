@@ -38,8 +38,8 @@ $comments = $_POST["comments"];
    
     }
     array_push($_SESSION['user'][2], $product);
-    var_dump($_SESSION['user']);
     $products = $_SESSION['user'][2];
+    var_dump($products);
     
 
 /*
@@ -84,7 +84,7 @@ if (isset($_POST['checkout']) ) {
                 <h5 class="Remove">Remove All</h5>
             </div>
             <form action="placeOrder.php" method="post">
-                <?php if (empty($_SESSION['cart'])): ?>
+                <?php if (!$products): ?>
                     <p>You have no products added in your Shopping Cart</p>
                 <?php else:?>
                 <div class="Cart-Items">
@@ -97,7 +97,7 @@ if (isset($_POST['checkout']) ) {
                             $total = 0;
                             foreach($products as $product): 
                                 $total += $product['price'];
-                                $items .= $product['id'] . " " . $size . ", ";
+                                $items .= $product['id'] . " " . $size . ",";
                         ?>
                         <tr>
                             <td class="name"><?=$product['name']?></td>
