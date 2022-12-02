@@ -1,0 +1,39 @@
+body{
+    background-color: whitesmoke;
+}
+
+button{
+    width: 200px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color: black; 
+    cursor: pointer;
+    background-color: #7ec4cf;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+
+.orderClass{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    width: 500px;  
+    overflow: hidden;  
+    margin: auto;  
+    margin: 20 0 0 450px;  
+    padding: 65px;  
+    padding-top: 10px;
+    padding-bottom: 30px;
+    background: #e8dff5;  
+    border-radius: 15px; 
+    margin-bottom: 5%;
+}
+
+.headerr{
+    font-size: 45px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

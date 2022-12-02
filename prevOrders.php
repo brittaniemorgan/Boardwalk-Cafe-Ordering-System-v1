@@ -2,13 +2,12 @@
 <?php
     require "DBManager.php";
     session_start();
-    $SESSION['user'] = [2, "Mary", []];
     $host = 'localhost';
     $username = 'boardwalk_user';
     $password = 'password123';
     $dbname = 'cafeInfo';
 
-    $cusId = $SESSION['user'][0];
+    $cusId = $_SESSION['user'][0];
 
     $db = new DBManager($host, $username, $password, $dbname);
     $GLOBALS['db'] = $db;
@@ -32,9 +31,15 @@
         </ul>
         <p>Address: <?=$order['address']?>, <?=$order['gen_del_location']?></p>
         <p>Total: <?=$order['total']?></p>
-        <p>Status: <?=$order['status']?></p>
-        <?php if($order['status'] == 'OPEN'):
-            echo $order['id'];?>
+        <?php if ($order['status'] == 'CLSD' && $order['delivered'] == 'NO'):?>
+            <p>Status: Your order is on the way!</p>
+        <?php elseif ($order['delivered'] == 'YES'):?>
+            <p>Status: Your order has been delivered. Enjoy!</p>
+        <?php elseif($order['status'] == 'OPEN'):?>
+            <p>Status: Your order has been received.</p>
+            <button class="cancel-order-btn" id="<?=$order['id']?>">Cancel</button>
+        <?php elseif($order['status'] == 'PREP'):?>
+            <p>Status: Your order is being prepared.</p>
             <button class="cancel-order-btn" id="<?=$order['id']?>">Cancel</button>
         <?php endif?>
     </div>

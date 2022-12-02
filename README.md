@@ -1,3 +1,3 @@
-# comp2140-boardwalk
+# comp2140-project
+# This is an ordering system for Boardwalk Cafe
 
-I you test the delete add back the image of the deleted item to the images folder cause its gonna delete it for real.

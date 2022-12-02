@@ -1,6 +1,5 @@
 <?php
     session_start();
-    #$_SESSION['username'] = "brie";
 
 ?>
 <!DOCTYPE html>
@@ -67,8 +66,6 @@
                 <?php
                     require_once 'DBManager.php';
                     require_once 'Rewards.php';
-                    var_dump($_SESSION['user']);
-                    echo $_SESSION['user'][0];
                     #turn on error reporting
                     ini_set('display_errors', 'On');
                     error_reporting(E_ALL | E_STRICT);
@@ -194,24 +191,9 @@
             </div>
             
         </footer>
-
-        <?php
-           /* $date = date('d/M/Y');
-            if($date == "31/Dec/2022"){
-                $rewards->expirePoints();
-            }*/
-
-            #$rewards->applyPoints();
-        ?>
         
     </div>
     
-    <!--Testing manager functionality to add/update image
-    <form action="test-imageUpload.php" method="post" enctype="multipart/form-data">
-        <input name="menu-item-image" type="file">
-        <input name="submit" type="submit" value="Upload">
-    </form>
-    -->
 
     
 

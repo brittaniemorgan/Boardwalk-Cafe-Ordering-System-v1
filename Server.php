@@ -1,4 +1,15 @@
-<script src="script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Server.css">
+    <script src="script.js"></script>
+    <title>Server Page</title>
+</head>
+<body>
+
 <?php
     require "DBManager.php";
     require "Employee.php";
@@ -40,10 +51,10 @@
             $stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN' OR `status` = 'PREP' ORDER BY `start_time` ASC");
             $orders = $stmt->fetchAll();
            ?>
-            <h2>Orders</h2>
+            <h2 class="headerr">Orders</h2>
             <?php foreach($orders as $order):?>
             
-            <div id="orderDiv<?=$order["id"]?>">
+            <div class="orderClass" id="orderDiv<?=$order["id"]?>">
                 <h3>Order #<?=$order["id"]?></h3>
                 <ul><?php
                     $items = explode(",",$order["items"]);
@@ -55,7 +66,7 @@
                         $foodCategory = $foodResult[0]["category"];
                 ?>
                     
-                        <li id="<?=$order["id"]?>>"><?=$foodName?>, <?=substr($item,3)?></li>
+                        <li id="<?=$order["id"]?>>"><?=$foodName?>, <?=substr($item,2)?></li>
                         <p class="item-category">Category: <?=$foodCategory?></p>
                     <?php endforeach?>
                 </ul>
@@ -81,3 +92,5 @@
     }
 
 ?>
+</body>
+</html>
