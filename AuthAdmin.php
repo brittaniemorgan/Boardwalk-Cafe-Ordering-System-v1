@@ -39,10 +39,10 @@
             $adminStmt = $this->db->getConn()->query("SELECT * FROM adminusers");
             $adminLog = $adminStmt->fetchAll();
             foreach($adminLog as $user){
-                if([$username,$password]==[$user["name"], $user["password"]]){      
-                    echo "hello";       
+                $hashPass = hash("sha512", $password);       
+                if (hash_equals($user['password'], $hashPass) && $username==$user["name"]){                
                     return [$user["id"], $user["name"], $user["role"]];
-                }             
+                }
             }
             return false;
         }

@@ -12,7 +12,7 @@
     $dbname = 'cafeInfo';
     $db = new DBManager($host, $username, $password, $dbname);
     $conn = $db -> getConn();
-    $db->addOrder($_POST['total'], $_POST['items'], $_POST['glocation'], $_POST['address'], $_SESSION['user'][0]);
+    $db->addOrder($_POST['total'], $_POST['items'], $_POST['glocation'], $_POST['address'], $_SESSION['user'][0], $_POST['payment']);
     $_SESSION['user'][2] = [];
     
     

@@ -143,7 +143,7 @@ class DBManager{
 
     
    
-    function addOrder($total, $items, $genLocation, $address, $cusId){
+    function addOrder($total, $items, $genLocation, $address, $cusId, $payment){
         $deliveryPersonnel = "";
         $date = date('d/M/Y');
         $start_time = date('h:i a');
@@ -154,7 +154,7 @@ class DBManager{
             $deliveryPersonnel = "Jason Campbell";
         }
 
-        $stmt = $this->conn->prepare("INSERT INTO `orders` (`total`, `items`, `date`, `gen_del_location`, `address`, `start_time`, `cusId`, `deliveryPersonnel`) VALUES (:total, :items, :date, :genLocation, :address, :start_time, :cusId, :deliveryPersonnel)");
+        $stmt = $this->conn->prepare("INSERT INTO `orders` (`total`, `items`, `date`, `gen_del_location`, `address`, `start_time`, `cusId`, `deliveryPersonnel`, `payment`) VALUES (:total, :items, :date, :genLocation, :address, :start_time, :cusId, :deliveryPersonnel, :payment)");
         $stmt->bindParam(':total', $total, PDO::PARAM_INT);
         $stmt->bindParam(':items', $items, PDO::PARAM_STR);
         $stmt->bindParam(':date', $date, PDO::PARAM_STR);
@@ -163,6 +163,7 @@ class DBManager{
         $stmt->bindParam(':start_time', $start_time, PDO::PARAM_STR);
         $stmt->bindParam(':cusId', $cusId, PDO::PARAM_INT);
         $stmt->bindParam(':deliveryPersonnel', $deliveryPersonnel, PDO::PARAM_STR);
+        $stmt->bindParam(':payment', $payment, PDO::PARAM_STR);
 
         if($stmt->execute()){
             echo     "<h1>Your Order Has Been Placed</h1>

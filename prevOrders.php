@@ -16,7 +16,7 @@
     $orders = $stmt->fetchAll();
     foreach($orders as $order):
 ?>
-    <div class="order" id="order-<?=$order["date"]?>">
+    <div class="order" id="order-<?=$order["id"]?>">
         <p>Order Date: <?=$order["date"]?></p>
         <ul>
         <?php $items = explode(", ",$order['items']);

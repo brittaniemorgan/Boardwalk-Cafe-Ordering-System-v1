@@ -89,7 +89,10 @@
               <div id="DeliveryDiv-<?=$deliveryfor["id"]?>">
 
                   <?php
-                  
+                    $custId = $deliveryfor['id'];
+                    $stmt = $this->conn->query("SELECT * FROM `users` WHERE `id` = $custId");
+                    $custNum = $stmt->fetchAll(PDO::FETCH_ASSOC)[0]['phoneNum'];
+
                   ?>
 
                   <h4>Customer's Address</h4>
@@ -97,7 +100,10 @@
                     <p class="delAddress">Address Line 2: <?=$deliveryfor["gen_del_location"]?></p>
                     <p class="delID">Customer's Order #: <?=$deliveryfor["id"]?></p>
                     <p class="delPrice">Customer's Total: $<?=$deliveryfor["total"]?>.00</p>
-                    <p class="order-statuses">Status: READY></p>
+                    <p class="payment">Payment Method: <?=$deliveryfor["payment"]?></p>
+                    <p class="payment">Customer Contact: <?=$custNum?></p>
+                    <p class="order-statuses">Status: READY</p>
+                    
                     <button id="<?=$deliveryfor["id"]?>" class="delivered-order">Mark as Delivered</button>
             </div> 
             <?php endforeach?>

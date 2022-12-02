@@ -69,8 +69,8 @@ $comments = $_POST["comments"];
                             <td class="name"><?=$product['name']?></td>
                         <?php if(isset($_POST['size'])){?>
                             <td ><?=$product['name']?></td>
-                        <?php} 
-                        else{?>
+                        <?php } 
+                        else{ ?>
                             <td class="name"><?=$product['name']?> (<?=$size?>)</td>
                         <?php }?>
                         <td><?=$product['price']?></td>
@@ -103,6 +103,12 @@ $comments = $_POST["comments"];
                         <option value="Hope Pastures" >Hope Pastures</option>
                         <option value="Jamaica College" >Jamaica College</option>
                         <option value="Old Hope Road" >Old Hope Road</option>
+                    </select>
+
+                    <p><label for="payment">Payment method:</label></p>
+                    <select name="payment" required>
+                        <option value="CASH" >CASH</option>
+                        <option value="CARD" >CARD</option>
                     </select>
 
                     <p><label for="address">Steet Address:</label></p>

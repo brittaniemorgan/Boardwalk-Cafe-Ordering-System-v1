@@ -39,7 +39,7 @@
                 <div class="overlay-content">
                 <a href="index.php">Home</a>
                 <a href="prevOrders.php">Previous Orders</a>
-                <a href="#">Contact</a>
+                <a href="https://www.instagram.com/theboardwalkcafeuwi/?hl=en">Contact</a>
                 <a href="adminLogIn.php">Admin</a>
                 </div>
 
@@ -172,7 +172,7 @@
 <!--
         <aside id="points">
             <?php
-                echo $rewards->retrieveRewardsData()." points";
+                #echo $rewards->retrieveRewardsData()." points";
             ?>
         </aside>-->
         

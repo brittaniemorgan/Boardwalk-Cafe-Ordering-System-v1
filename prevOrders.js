@@ -7,7 +7,8 @@ window.onload = function(){
             if (request.readyState === XMLHttpRequest.DONE){
                 if (request.status === 200){
                     console.log("del");
-                   // document.getElementById("order-"+orderId).innerHTML = "Order Cancelled";
+                    //document.getElementById("order-"+orderId).innerHTML = "Order Cancelled";
+                    window.location = 'prevOrders.php';
                 }
             }
         }
