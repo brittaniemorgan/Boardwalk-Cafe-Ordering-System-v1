@@ -7,7 +7,6 @@ $password = 'password123';
 $dbname = 'cafeInfo';
 $db = new DBManager($host, $username, $password, $dbname);
 $conn = $db -> getConn();
-$_SESSION['cart'] = [];
 $items = "";
 echo $_SESSION['user'][0];
 $foodID = (int) $_POST["foodID"];
@@ -38,8 +37,9 @@ $comments = $_POST["comments"];
         // Check if the product exists (array is not empty)
    
     }
-    array_push($_SESSION['cart'], $product);
-    $products = $_SESSION['cart'];
+    array_push($_SESSION['user'][2], $product);
+    var_dump($_SESSION['user']);
+    $products = $_SESSION['user'][2];
     
 
 /*
