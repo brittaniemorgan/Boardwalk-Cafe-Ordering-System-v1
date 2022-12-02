@@ -75,8 +75,22 @@
               $delivery = $stmts->fetchAll();
             }
             elseif ($_SESSION['admin'][1] == "Jason Campbell"){
-              $stmts = $this->conn->query("SELECT * FROM orders WHERE status = 'CLSD' AND  delivered = 'NO' AND deliveryPersonnel = 'Jason Campbell'");
-              $delivery = $stmts->fetchAll();
+              $stmts = $this->conn->query("SELECT * FROM orders WHERE delivered = 'NO' AND deliveryPersonnel = 'Jason Campbell' AND gen_del_location = 'Mona'");
+              $delMona = $stmts->fetchAll();
+                            
+              $stmts = $this->conn->query("SELECT * FROM orders WHERE delivered = 'NO' AND deliveryPersonnel = 'Jason Campbell' AND gen_del_location = 'Papine'");
+              $delPap = $stmts->fetchAll();
+                            
+              $stmts = $this->conn->query("SELECT * FROM orders WHERE delivered = 'NO' AND deliveryPersonnel = 'Jason Campbell' AND gen_del_location = 'Jamaica College'");
+              $delJC = $stmts->fetchAll();
+                            
+              $stmts = $this->conn->query("SELECT * FROM orders WHERE delivered = 'NO' AND deliveryPersonnel = 'Jason Campbell' AND gen_del_location = 'Old Hope Road'");
+              $delOldHope = $stmts->fetchAll();
+
+              $stmts = $this->conn->query("SELECT * FROM orders WHERE delivered = 'NO' AND deliveryPersonnel = 'Jason Campbell' AND gen_del_location = 'Hope Pastures'");
+              $delHopePast = $stmts->fetchAll();
+                            
+              $delivery = array_merge($delMona, $delPap, $delJC, $delOldHope, $delHopePast);
             }
            ?>
 
