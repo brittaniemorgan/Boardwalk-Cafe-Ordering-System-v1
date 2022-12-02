@@ -1,0 +1,60 @@
+body {
+    background-color: whitesmoke;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.username{
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px; 
+}
+
+
+.password{
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px; 
+}
+
+.login{
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color: black; 
+    cursor: pointer;
+}
+
+.logMain{
+    width: 382px;  
+    overflow: hidden;  
+    margin: auto;  
+    margin: 20 0 0 450px;  
+    padding: 80px;  
+    background: #e8dff5;  
+    border-radius: 15px; 
+}
+
+.error{
+    font-size: 20px;
+    color: red;
+}
+
+a{
+    font-size: 25px;
+    text-align: center;
+    color: black;
+}
+
+.login:hover{
+    background-color: gray;
+}
+
+h3{
+    font-size: 30px;
+}
