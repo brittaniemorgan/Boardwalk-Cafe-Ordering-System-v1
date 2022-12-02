@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="adminLogin.css">
 <?php
     session_start();
 

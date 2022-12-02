@@ -1,4 +1,5 @@
 <script src="script.js"></script>
+<link rel="stylesheet" href="Server.css">
 <?php
     require "DBManager.php";
     require "Employee.php";

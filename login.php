@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="login.css">
 <?php
     session_start();
     if ((isset($_SESSION['user']) && $_SESSION['user'] != false)) {

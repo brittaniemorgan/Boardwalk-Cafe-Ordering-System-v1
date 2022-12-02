@@ -36,6 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Personnel - The Boardwalk Cafe</title>
     <script src="deliveryPersonnel.js"></script>
+    <link rel="stylesheet" href="deliveryPersonnel.css">
 </head>
 <body>
     <?php
@@ -103,7 +104,7 @@
               <div id="DeliveryDiv-<?=$deliveryfor["id"]?>">
 
                   <?php
-                    $custId = $deliveryfor['id'];
+                    $custId = $deliveryfor['cusId'];
                     $stmt = $this->conn->query("SELECT * FROM `users` WHERE `id` = $custId");
                     $custNum = $stmt->fetchAll(PDO::FETCH_ASSOC)[0]['phoneNum'];
 

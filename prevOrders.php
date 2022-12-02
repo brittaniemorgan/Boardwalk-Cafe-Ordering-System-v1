@@ -1,4 +1,5 @@
 <script src="prevOrders.js" type="text/javascript"></script>
+<link rel="stylesheet" href="prevOrders.css">
 <?php
     require "DBManager.php";
     session_start();
