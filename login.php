@@ -1,12 +1,8 @@
 <?php
     session_start();
-    if (($_SESSION['user'] != false)) {
+    if ((isset($_SESSION['user']) && $_SESSION['user'] != false)) {
         header('Location: index.php');
     }
-    /*
-    if (isset($_SESSION['user']) && $_SESSION['user'] != "temp") {
-        header('Location: index.php');
-    }*/
 
     require_once "AuthAdmin.php";
     $error_message = '';
@@ -19,12 +15,8 @@
         }
         else{
             $_SESSION['user'] = $response;
-            //header('Location: index.php');  
+            header('Location: index.php');  
         }
-    echo $response[1];
-
-     
-        
     }
 ?>
 

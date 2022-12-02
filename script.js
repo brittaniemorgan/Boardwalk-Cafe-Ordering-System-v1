@@ -85,6 +85,12 @@ window.onload = function(){
         reqManager.sendUpdate("http://localhost/comp2140-project/Server.php?action=updateReady&orderId=" + orderId, orderId,"ready");
     }
 
+    function updateOrderPreparing(e){
+        var btn = e.target;
+        var orderId = btn.getAttribute("id");
+        console.log(orderId);
+        reqManager.sendUpdate("http://localhost/comp2140-project/Server.php?action=updatePrepare&orderId=" + orderId, orderId,"prep");
+    }
 
     var foodButtons = document.getElementsByClassName("addToOrderButton");
     for (var i = 0; i < foodButtons.length ; i++){

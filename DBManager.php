@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="index.css">
 <?php
-#session_start();
-#$_SESSION["user"] = "user123";
  
 class DBManager{
 
@@ -81,7 +79,6 @@ class DBManager{
         $already_here = $this->userInfo($name);
         $hashPass = hash("sha512", $password);
 
-        #constraint - choose a suitable size to limit password to to accomadate hash
         
         
         if($already_here === 'user not found'){

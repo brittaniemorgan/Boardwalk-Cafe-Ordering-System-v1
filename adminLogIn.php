@@ -23,7 +23,8 @@
                 case 'delivery personnel':
                     header('Location: deliveryPersonnel.php'); 
                     break;
-                case 'chef'://not sure 
+                case 'chef': 
+                    header('Location: Server.php');
                     break;
             }            
         }

@@ -55,7 +55,7 @@
                         $foodCategory = $foodResult[0]["category"];
                 ?>
                     
-                        <li id="<?=$order["id"]?>>"><?=$foodName?>, <?=substr($item,3)?></li>
+                        <li id="<?=$order["id"]?>>"><?=$foodName?>, <?=substr($item,2)?></li>
                         <p class="item-category">Category: <?=$foodCategory?></p>
                     <?php endforeach?>
                 </ul>

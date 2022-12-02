@@ -39,7 +39,7 @@
             $adminStmt = $this->db->getConn()->query("SELECT * FROM adminusers");
             $adminLog = $adminStmt->fetchAll();
             foreach($adminLog as $user){
-                if([$username,$password]==[$user["name"], $user["password"]]){      //use hash
+                if([$username,$password]==[$user["name"], $user["password"]]){      
                     echo "hello";       
                     return [$user["id"], $user["name"], $user["role"]];
                 }             
@@ -54,7 +54,4 @@
             return $this->checkPassword($name, $hashPass);
         }
     }
-
-    //$admin = new AuthAdmin();
-    //$admin->verifyAdmin("hd",120);
 ?>
