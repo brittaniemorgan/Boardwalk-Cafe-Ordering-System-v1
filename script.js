@@ -32,18 +32,6 @@ window.onload = function(){
             request.open("GET", url);
             request.send();   
         }
-        sendUpdateDel(url,orderId){
-            let request = new XMLHttpRequest();
-            request.onreadystatechange = function(){
-            if (request.readyState === XMLHttpRequest.DONE){
-                if (request.status === 200){
-                    document.querySelector("#DeliveryDiv-"+orderId).style.display="none";
-                }
-            }
-            request.open("GET", url);
-            request.send();   
-            }
-        }
 
         getFoodDetails(foodID){
             var url = "http://localhost/comp2140-project/foodDescription.php?foodID=" + foodID;
@@ -97,19 +85,6 @@ window.onload = function(){
         reqManager.sendUpdate("http://localhost/comp2140-project/Server.php?action=updateReady&orderId=" + orderId, orderId,"ready");
     }
 
-    function updateOrderPreparing(e){
-        var btn = e.target;
-        var orderId = btn.getAttribute("id");
-        console.log(orderId);
-        reqManager.sendUpdate("http://localhost/comp2140-project/Server.php?action=updatePrepare&orderId=" + orderId, orderId,"prep");
-    }
-
-    function updateDelivery(e){
-        var btn = e.target;
-        var orderId = btn.getAttribute("id");
-        console.log(orderId);
-        reqManager.sendUpdateDel("http://localhost/comp2140-project/deliveryPersonnel.php?orderID=" + orderId, orderId);
-    }
 
     var foodButtons = document.getElementsByClassName("addToOrderButton");
     for (var i = 0; i < foodButtons.length ; i++){
@@ -130,6 +105,7 @@ window.onload = function(){
 
     /* Open when someone clicks on the span element */
     function openNav() {
+        console.log("okay");
         document.getElementById("myNav").style.width = "100%";
     }
   
@@ -138,13 +114,8 @@ window.onload = function(){
         document.getElementById("myNav").style.width = "0%";
     }
 
-    //document.getElementById("expandBtn").addEventListener("click", openNav);
-    //document.getElementById("close-menu-btn").addEventListener("click", closeNav);
+    document.getElementById("expandBtn").addEventListener("click", openNav);
+    document.getElementById("close-menu-btn").addEventListener("click", closeNav);
 
-    
-    var deliveryButtons = document.getElementsByClassName("delivered-order");
-    for (var i = 0; i < deliveryButtons.length ; i++){
-        deliveryButtons[i].addEventListener("click", updateDelivery);
-    }
     
 }

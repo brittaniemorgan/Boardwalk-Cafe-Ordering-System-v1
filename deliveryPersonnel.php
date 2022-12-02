@@ -35,7 +35,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Personnel - The Boardwalk Cafe</title>
-    <script src="script.js"></script>
+    <script src="deliveryPersonnel.js"></script>
 </head>
 <body>
     <?php
@@ -85,8 +85,10 @@
                       echo 'Could Not Update Status';
               } */
                 $stmt = $this->conn->prepare("UPDATE `orders` SET `delivered` = 'YES' WHERE `id` = :orderId");
+                
                 //UPDATE `orders` SET `status` = 'CLSD', `end_time` = "90" WHERE `id` = 4;
                 $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+                $stmt->execute();
           }
 
 
@@ -159,10 +161,10 @@
                     <!-- <button id="<?=$deliveryfor["id"]?>" class="delivered-order" onclick= "alert('Order has been delivered')">
                     Mark as Delivered</button> -->
                     <button id="<?=$deliveryfor["id"]?>" class="delivered-order">Mark as Delivered</button>
-            
+            </div> 
             <?php endforeach?>
                      
-            </div> 
+            
             </div> 
             
             
@@ -174,7 +176,7 @@
     $deliveryPerson->viewOrders();
     if (isset($_GET["orderID"])){
         echo $_GET["orderID"];
-        $deliveryPerson->updateStatus($_GET["orderID"]);
+        $deliveryPerson->updateStatus((int)$_GET["orderID"]);
     }
 
     

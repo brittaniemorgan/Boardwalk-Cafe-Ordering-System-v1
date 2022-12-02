@@ -1,8 +1,7 @@
 <?php
     session_start();
-    if (isset($_SESSION['user'])) {
-        unset($_SESSION['user']);
-        //header('Location: index.php');
+    if (($_SESSION['user'] != false)) {
+        header('Location: index.php');
     }
     /*
     if (isset($_SESSION['user']) && $_SESSION['user'] != "temp") {
@@ -20,8 +19,10 @@
         }
         else{
             $_SESSION['user'] = $response;
-            header('Location: index.php');  
+            //header('Location: index.php');  
         }
+    echo $response[1];
+
      
         
     }

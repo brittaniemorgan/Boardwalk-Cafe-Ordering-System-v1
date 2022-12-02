@@ -40,7 +40,6 @@
                 <div class="overlay-content">
                 <a href="index.php">Home</a>
                 <a href="prevOrders.php">Previous Orders</a>
-                <a href="" onclick="logOff()">Log Out</a>
                 <a href="#">Contact</a>
                 <a href="adminLogIn.php">Admin</a>
                 </div>
@@ -68,8 +67,8 @@
                 <?php
                     require_once 'DBManager.php';
                     require_once 'Rewards.php';
-                    
-
+                    var_dump($_SESSION['user']);
+                    echo $_SESSION['user'][0];
                     #turn on error reporting
                     ini_set('display_errors', 'On');
                     error_reporting(E_ALL | E_STRICT);

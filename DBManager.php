@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="index.css">
-<script src="script.js" type="text/javascript"></script>
 <?php
 #session_start();
 #$_SESSION["user"] = "user123";
@@ -147,25 +146,32 @@ class DBManager{
 
     
    
-    function addOrder($total, $items, $genLocation, $address){
-
+    function addOrder($total, $items, $genLocation, $address, $cusId){
+        $deliveryPersonnel = "";
         $date = date('d/M/Y');
         $start_time = date('h:i a');
-        
+        if ($genLocation == "UWI"){
+            $deliveryPersonnel = "Chad Williams";
+        }
+        else{
+            $deliveryPersonnel = "Jason Campbell";
+        }
 
-        $stmt = $this->conn->prepare("INSERT INTO `orders` (`total`, `items`, `date`, `gen_del_location`, `address`, `start_time`) VALUES (:total, :items, :date, :genLocation, :address, :start_time)");
+        $stmt = $this->conn->prepare("INSERT INTO `orders` (`total`, `items`, `date`, `gen_del_location`, `address`, `start_time`, `cusId`, `deliveryPersonnel`) VALUES (:total, :items, :date, :genLocation, :address, :start_time, :cusId, :deliveryPersonnel)");
         $stmt->bindParam(':total', $total, PDO::PARAM_INT);
         $stmt->bindParam(':items', $items, PDO::PARAM_STR);
         $stmt->bindParam(':date', $date, PDO::PARAM_STR);
         $stmt->bindParam(':genLocation', $genLocation, PDO::PARAM_STR);
         $stmt->bindParam(':address', $address, PDO::PARAM_STR);
         $stmt->bindParam(':start_time', $start_time, PDO::PARAM_STR);
+        $stmt->bindParam(':cusId', $cusId, PDO::PARAM_INT);
+        $stmt->bindParam(':deliveryPersonnel', $deliveryPersonnel, PDO::PARAM_STR);
 
         if($stmt->execute()){
             echo     "<h1>Your Order Has Been Placed</h1>
             <p>Thank you for ordering with us, we'll contact you by email with your order details.</p>";
         }else{
-            echo 'error, couldnt place order';
+            echo '<h1>error, couldnt place order</h1>';
         }
 
     }
@@ -173,7 +179,7 @@ class DBManager{
     
     function deleteOrder($orderId){
         $stmt = $this->conn->prepare("DELETE FROM `orders` WHERE `id` = :orderId");
-        $stmt->bindParam(':orderId', $orderId, PDO::PARAM_STR);
+        $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
 
         if($stmt->execute()){
             echo 'order deleted';
@@ -184,49 +190,30 @@ class DBManager{
     }
 
 
-    function getFoodDescription($foodID){
+    function getFoodDescription($foodID)
+    {
         $stmt = $this->conn->query("SELECT * FROM menuItems WHERE id = $foodID");
         $results = $stmt->fetchAll();
 
-        ?>
+?>
         <div>
-            <h2 id="foodName"><?= $results[0]["name"]?></h2>
+            <h2 id="foodName"><?= $results[0]["name"] ?></h2>
             <form id="" action="viewCart.php" method="post">
-                <textarea name="foodID"  style="display: none;"><?=$foodID?></textarea>
-                <?php 
-                    if ($results[0]["large_size"] != null):
+                <textarea name="foodID"  style="display: none;"><?= $foodID ?></textarea>
+                <?php
+        if ($results[0]["large_size"] != null):
                 ?>
                     <p>Please select a meal size</p>
-                    <input type="radio" name="mealSize" value="Medium" id="<?=$results[0]["price"]?>" required> Medium - $<?=$results[0]["price"]?></input>
-                    <input type="radio" name="mealSize" value="Large" id="<?=$results[0]["large_price"]?>"> Large - $<?=$results[0]["large_price"]?></input>
+                    <input type="radio" name="mealSize" value="MED" id="<?= $results[0]["price"] ?>" required> Medium - $<?= $results[0]["price"] ?></input>
+                    <input type="radio" name="mealSize" value="LRG" id="<?= $results[0]["large_price"] ?>"> Large - $<?= $results[0]["large_price"] ?></input>
 
-                <?php else:?>
-                    <p name="regPrice" id="<?=$results[0]["price"]?>"> Price $<?=$results[0]["price"]?></p>
-                <?php endif; 
-                    if ($results[0]["category"] == "breakfast"):
-                ?>
-                <p>Choose a side</p>
-                    <input type="radio" name="side" value="toast">Toast</input>
-                    <input type="radio" name="side" value="hash-browns">Hash Browns</input> 
-                    <input type="radio" name="side" value="bagels">Bagels</input>
-                    <input type="radio" name="side" value="french-toast">French Toast</input>   
-                <?php endif?>  
-                <label for="quantity">Quantity: </label>
-                <input type="number" min="1" max="10" name="quantity" placeholder="Quantity"></input>          
+                <?php else: ?>
+                    <p name="regPrice" id="<?= $results[0]["price"] ?>"> Price $<?= $results[0]["price"] ?></p>
+                <?php endif; ?>       
                 <label for="comments">Comments:</label>
                 <textarea name="comments"></textarea>
                 <button type = "submit" name = "add-to-cart-btn">Add to Cart</button>
             </form>
 
         </div>
-        <?php
-    }
-
-
-
-
-
-}
-
-
-?>
+        <?php }}?>

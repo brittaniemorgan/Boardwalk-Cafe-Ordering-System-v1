@@ -1,3 +1,4 @@
+<script src="prevOrders.js" type="text/javascript"></script>
 <?php
     require "DBManager.php";
     session_start();
@@ -10,13 +11,13 @@
     $cusId = $SESSION['user'][0];
 
     $db = new DBManager($host, $username, $password, $dbname);
-    
+    $GLOBALS['db'] = $db;
     $conn = $db->getConn(); 
-    $stmt = $conn->query("SELECT * FROM orders WHERE cusId = $cusId ORDER BY date ASC");//dbManager?
+    $stmt = $conn->query("SELECT * FROM orders WHERE cusId = $cusId ORDER BY status DESC");//dbManager?
     $orders = $stmt->fetchAll();
     foreach($orders as $order):
 ?>
-    <div class="order">
+    <div class="order" id="order-<?=$order["date"]?>">
         <p>Order Date: <?=$order["date"]?></p>
         <ul>
         <?php $items = explode(", ",$order['items']);
@@ -32,13 +33,15 @@
         <p>Address: <?=$order['address']?>, <?=$order['gen_del_location']?></p>
         <p>Total: <?=$order['total']?></p>
         <p>Status: <?=$order['status']?></p>
-        <?php if($order['status'] == 'OPEN'):?>
-            <button class="cancel-order-btn" onclick="cancelOrder(<?=$order['id']?>)">Cancel</button>
+        <?php if($order['status'] == 'OPEN'):
+            echo $order['id'];?>
+            <button class="cancel-order-btn" id="<?=$order['id']?>">Cancel</button>
         <?php endif?>
     </div>
 <?php endforeach;
-    function cancelOrder($db,$orderID){
-        $db->deleteOrder($orderID);
+
+    if (isset($_GET['orderId'])){
+        $GLOBALS['db']->deleteOrder((int) $_GET['orderId']);
     }
 ?>
 

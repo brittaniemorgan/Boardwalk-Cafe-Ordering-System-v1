@@ -166,15 +166,6 @@ if (isset($_POST['checkout']) ) {
                         <div class="total-value">$<?=$total?>.00</div>
                     </div>
                     <!--<input type="submit" value="Update" name="update">-->
-
-                    <p><label for="general-location">General Location:</label></p>
-                    <textarea id="glocation" name="glocation" rows="2" cols="30">></textarea>
-
-                    <p><label for="address">Address:</label></p>
-                    <textarea id="address" name="address" rows="3" cols="40">></textarea>
-                    
-
-
                     <button type="submit" class="button-checkout">Checkout</button>
                 </div>
                 <textarea name="total" value="<?=$items?>" hidden><?=$total?></textarea>
@@ -185,42 +176,3 @@ if (isset($_POST['checkout']) ) {
 
     </body>
 </html>
-
-<?php
-/*
-///////////////////added
-foreach($items as $item): 
-    $total += $item[3] * $item[2];
-    $totalItems += 1 * $item[2];
-
-    $genLocation = $_GET["location"];
-    $address = $_GET["address"];
-
-    function addOrder($total, $items, $genLocation, $address){
-
-        $date = date('d/M/Y');
-        $start_time = date('h:i a');
-        
-
-        $stmt = $this->conn->prepare("INSERT INTO `orders` (`total`, `items`, `date`, `gen_del_location`, `address`, `start_time`) VALUES (:total, :items, :date, :genLocation, :address, :start_time)");
-        $stmt->bindParam(':total', $total, PDO::PARAM_INT);
-        $stmt->bindParam(':items', $items, PDO::PARAM_STR);
-        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
-        $stmt->bindParam(':genLocation', $genLocation, PDO::PARAM_STR);
-        $stmt->bindParam(':address', $address, PDO::PARAM_STR);
-        $stmt->bindParam(':start_time', $start_time, PDO::PARAM_STR);
-
-        if($stmt->execute()){
-            echo 'order placed';
-        }else{
-            echo 'error, couldnt place order';
-        }
-
-    }
-
-
-
-
-/////////////////////////////////////////
-*/
-?>

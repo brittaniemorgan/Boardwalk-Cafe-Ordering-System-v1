@@ -180,3 +180,7 @@ hr{
     float: right;
     margin-right: 5%;
    }
+
+select {
+    width: 300px;
+}

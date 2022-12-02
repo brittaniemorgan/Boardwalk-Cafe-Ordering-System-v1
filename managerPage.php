@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,11 @@
 </head>
 <body>
     <?php
+    /*echo $SESSION['admin'][0];
+        if (!isset($SESSION["admin"])){
+            //header('Location: index.php');
+
+        }*/
         
         require_once 'DBManager.php';
         require_once 'Metrics.php';

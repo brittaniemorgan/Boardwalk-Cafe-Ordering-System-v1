@@ -1,9 +1,6 @@
 <?php
     session_start();
-    if (isset($_SESSION['admin'])) {
-        unset($_SESSION['admin']);//fix
-        header('Location: index.php');
-    }
+
 
     require_once "AuthAdmin.php";
     $error_message = '';

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once 'DBManager.php';
     $foodID = $_GET["foodID"];
     $host = 'localhost';
